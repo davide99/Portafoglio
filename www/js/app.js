@@ -64,6 +64,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         views: {
           'menuContent': {
             templateUrl: 'templates/cronologia.html'
+            controller: 'CronologiaCtrl'
           }
         }
       })
