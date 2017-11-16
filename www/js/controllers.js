@@ -42,9 +42,9 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistsCtrl', function($scope, $http) {
-	var link = "portafoglio.altervista.org/select.php";
+	var link = "http://portafoglio.altervista.org/select.php";
 	$scope.playlists = null;
-	
+
 	$http.get(link,{
 		params: {
 			tabella: 'utenti'
@@ -55,7 +55,7 @@ angular.module('starter.controllers', [])
 	}).catch(function(error){
 		console.log(error);
 	});
-	
+
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
