@@ -1,7 +1,7 @@
 //Andrea
-.controller('LoginCtrl', function($scope, $http) {
+
+angular.module('starter.controllers')
+.controller('LoginCtrl', function($scope) {
   $scope.loginData={};
-  $scope.login=function(){
-    alert($scope.loginData.username);
-  }
-}
+  $scope.loginData.p = "liug";
+});
