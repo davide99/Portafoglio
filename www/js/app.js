@@ -49,7 +49,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-<<<<<<< HEAD
+
     .state('app.profilo', {
         url: '/profilo',
         views: {
@@ -58,7 +58,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           }
         }
       })
-=======
 
     .state('app.cronologia', {
         url: '/cronologia',
@@ -68,8 +67,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           }
         }
       })
-
->>>>>>> 204b0eb45be2e4920faf56be6298bb4c36eb9eb7
+      
     .state('app.playlists', {
       url: '/playlists',
       views: {
