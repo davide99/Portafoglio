@@ -58,6 +58,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
+    
 
   .state('app.single', {
     url: '/playlists/:playlistId',
