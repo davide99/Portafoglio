@@ -40,6 +40,8 @@ angular.module('starter.controllers', [])
   };
 })
 
+//Controller per prendere utenti
+//geheh
 .controller('PlaylistsCtrl', function($scope, $http) {
 	var link = "http://portafoglio.altervista.org/select.php";
 	$scope.playlists = null;
