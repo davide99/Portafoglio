@@ -1,10 +1,10 @@
 <ion-view view-title="Playlists">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
-        <br />
-        {{playlist.importo}}
+      <ion-item ng-repeat="utente in utenti" href="#/app/playlists/{{utente.id_utente}}">
+        {{utente.nome}}
+      </br>
+        {{utente.cognome}}
       </ion-item>
     </ion-list>
   </ion-content>
