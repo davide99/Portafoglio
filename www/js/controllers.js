@@ -51,8 +51,8 @@ angular.module('starter.controllers', [])
 			tabella: 'utenti'
 		}
 	}).then(function(response){
-		$scope.playlists = response.data.utenti;
-		console.log($scope.playlists);
+		$scope.utenti = response.data.utenti;
+		console.log($scope.utenti);
 	}).catch(function(error){
 		console.log(error);
 	});
