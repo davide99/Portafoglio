@@ -1,8 +1,8 @@
 //Nicolò
-angular.module('starter.controllers', [])
+angular.module('starter.controllers')
 
 .controller('ProfiloCtrl', function($scope, $http) {
-
+console.log("ciao");
   var link = "http://portafoglio.altervista.org/getUserById.php";
 	$scope.utente = null;
 
