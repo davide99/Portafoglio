@@ -67,7 +67,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           }
         }
       })
-      
+
     .state('app.playlists', {
       url: '/playlists',
       views: {
@@ -77,7 +77,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-    
+    //
+    .state('login', {
+       url: '/login',
+       templateUrl: 'templates/login.html',
+       controller: 'LoginCtrl'
+   })//
 
   .state('app.single', {
     url: '/playlists/:playlistId',
