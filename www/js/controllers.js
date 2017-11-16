@@ -7,23 +7,4 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-})
-
-//Controller per prendere utenti
-//geheh
-.controller('PlaylistsCtrl', function($scope, $http) {
-	var link = "http://portafoglio.altervista.org/select.php";
-	$scope.playlists = null;
-
-	$http.get(link,{
-		params: {
-			tabella: 'utenti'
-		}
-	}).then(function(response){
-		$scope.utenti = response.data.utenti;
-		console.log($scope.utenti);
-	}).catch(function(error){
-		console.log(error);
-	});
-
-})
+});

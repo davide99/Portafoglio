@@ -25,7 +25,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
@@ -46,7 +46,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/portafoglio',
     views: {
       'menuContent': {
-        templateUrl: 'templates/portafoglio.html'
+        templateUrl: 'templates/portafoglio.html',
+        controller: 'PortafoglioCtrl'
       }
     }
   })
@@ -55,7 +56,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       url: '/entrate',
       views: {
         'menuContent': {
-          templateUrl: 'templates/entrate.html'
+          templateUrl: 'templates/entrate.html',
+          controller: 'EntrateCtrl'
         }
       }
     })
@@ -64,7 +66,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         url: '/uscite',
         views: {
           'menuContent': {
-            templateUrl: 'templates/uscite.html'
+            templateUrl: 'templates/uscite.html',
+            controller: 'UsciteCtrl'
           }
         }
       })
@@ -73,7 +76,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         url: '/profilo',
         views: {
           'menuContent': {
-            templateUrl: 'templates/profilo.html'
+            templateUrl: 'templates/profilo.html',
+            controller: 'ProfiloCtrl'
           }
         }
       })
@@ -82,7 +86,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         url: '/cronologia',
         views: {
           'menuContent': {
-            templateUrl: 'templates/cronologia.html'
+            templateUrl: 'templates/cronologia.html',
+            controller: 'CronologiaCtrl'
           }
         }
       });
