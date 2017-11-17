@@ -112,6 +112,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
             controller: 'CronologiaUsciteCtrl'
           }
         }
+      })
+
+      .state('app.tabs.cronologiaEU', {
+        url: '/cronologiaEU',
+        views: {
+          'tabs-cronologiaEU': {
+            templateUrl: 'templates/cronologiaEU.html',
+            controller: 'CronologiaEUCtrl'
+          }
+        }
       });
 
 
