@@ -204,6 +204,10 @@ Main components
 .green {
   border-color: forestgreen;
 }
+
+.red {
+  border-color: red;
+}
 .dark i {
   color: #444;
 }
