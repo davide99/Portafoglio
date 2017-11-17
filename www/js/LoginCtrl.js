@@ -1,6 +1,6 @@
 
 angular.module('starter.controllers')
-.controller('LoginCtrl', function($scope, $rootScope, $http, $ionicPopup, $location) {
+.controller('LoginCtrl', function($scope, $http, $ionicPopup, $location, sharedProperties) {
   $scope.loginData={};
 
   if((localStorage.getItem("username") != undefined) && (localStorage.getItem("password") != undefined)){
@@ -29,14 +29,8 @@ angular.module('starter.controllers')
           $scope.loginData.username = $scope.loginData.password = "";
         });
       }else {
-        $rootScope.id_utente = id;
-        if($scope.loginData.remember){
-          localStorage.setItem("username", $scope.loginData.username);
-          localStorage.setItem("password", $scope.loginData.password);
-        }else{
-          localStorage.removeItem("username");
-          localStorage.removeItem("password");
-        }
+        sharedProperties.setIdUtente(id);
+
         $location.url('app/portafoglio');
       }
 
