@@ -30,30 +30,37 @@
     </div>
     !-->
     <form> <br>
-      <div style="padding-bottom: 2%; width: 100%;"><center>
-      <input style="border: 1px solid; width: 60%; border-radius: 15px;" type="text" placeholder="Nome" ng-model="nome"></input></center>
+    <div style="padding-bottom: 2%; width: 100%;">
+      <center>
+      <input style="border: 2px solid; width: 60%; border-radius: 10px;" type="text" placeholder="Nome" ng-model="nome"></input></center>
     </div>
-    <div style="padding-bottom: 2%; width: 100%"><center>
-      <input style="border: 1px solid; width:60%; border-radius: 15px;" type="number" placeholder="Importo" ng-model="importo"></input></center>
+    <div style="padding-bottom: 2%; width: 100%">
+      <center>
+      <input style="border: 2px solid; width:60%; border-radius: 10px;" type="number" placeholder="Importo" ng-model="importo"></input></center>
     </div>
-    <div style="padding-bottom: 2%; width:100%;"><center>
-      <input style="border: 1px solid; width:60%; border-radius: 15px;" type="datetime-local" placeholder="Inserisci la data" ng-model="data"></input></center>
+    <div style="padding-bottom: 2%; width:100%;">
+      <center>
+      <input style="border: 2px solid; width:60%; border-radius: 10px;" type="datetime-local" placeholder="Inserisci la data" ng-model="data"></input></center>
     </div>
-    <div style="padding-bottom: 2%; width: 100%"><center>
-      <input style="border: 1px solid; width:60%;border-radius: 15px;" type="number" placeholder="Inserisci id_tipo" ng-model="id_tipo"></input></center>
+    <div style="padding-bottom: 2%; width: 100%">
+      <center>
+      <input style="border: 2px solid; width:60%; border-radius: 10px;" type="number" placeholder="Inserisci id_tipo" ng-model="id_tipo"></input></center>
     </div>
     </form>
 
     <br>
     <!--
     <a href="http://portafoglio.altervista.org/insert.php?tabella=uscite&nome={{nome}}&data={{data}}&importo={{importo}}&id_tipo={{id_tipo}}">
-    <button ion-button class="button button-light"><h5><u> Aggiungi Uscita alla lista</u></h5></button ion-button>
+    <button ion-button class="button button-light"><h5><u> Aggiungi Uscita </u></h5></button ion-button>
     </a>
     !-->
-    <center><a href="http://portafoglio.altervista.org/insert.php?tabella=uscite&nome={{nome}}&importo={{importo}}&data={{data}}&id_tipo={{id_tipo}}"
-       <button class="button button-positive" style="border-radius: 50%"> Aggiungi Uscita </button>
-      </a>
-     </center>
+  <center>
+    <a href="http://portafoglio.altervista.org/insert.php?tabella=uscite&nome={{nome}}&importo={{importo}}&data={{data}}&id_tipo={{id_tipo}}" >
+      <button class="button button-block button-positive" style="width:60%">
+        Aggiungi Uscita
+      </button>
+    </a>
+  </center>
 
     <br>
     <br>
