@@ -1,5 +1,14 @@
 <ion-view view-title="Entrate">
   <ion-content>
     <h1>Entrate</h1>
+    <ion-list>
+      <ion-item ng-repeat="entrata in entrata" href="#/app/playlists/{{entrata.id_entrata}}">
+        {{entrata.nome}}
+        <br>
+        {{entrata.importo}}
+        <br>
+        {{entrata.data}}
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
