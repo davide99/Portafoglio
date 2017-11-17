@@ -3,20 +3,30 @@
     <h1 style="text-align: center">Portafoglio</h1>
 
     <ion-list>
-       <label class="item item-input">
-          <input type="text" placeholder="Username" ng-model="loginData.username" />
-       </label>
+      <label class="item item-input">
+        <i class="icon ion-person placeholder-icon"></i>
+        <input type="text" placeholder="Username" ng-model="loginData.username" />
+      </label>
 
-       <label class="item item-input">
-          <input type="text" placeholder="Password" ng-model="loginData.password" />
-       </label>
+      <label class="item item-input">
+        <i class="icon ion-locked placeholder-icon"></i>
+        <input type="password" placeholder="Password" ng-model="loginData.password" />
+      </label>
 
-
+      <div class = "item item-toggle">
+        Ricorda
+        <label class="toggle">
+          <input type="checkbox" checked ng-model="loginData.remember"/>
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </div>
     </ion-list>
 
     <div align="center" style="margin: 10px">
       <button class="button button-positive button-full" ng-click="doLogin()">
-         Login
+        Login
       </button>
       Non hai un account? <a href="#">Registrati</a>
     </div>
