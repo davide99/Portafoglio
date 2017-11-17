@@ -1,5 +1,34 @@
 <ion-view view-title="Cronologia" >
   <ion-content class="padding" >
-      <p>cronologia</p>
+      <section id="cd-timeline" class="cd-container">
+        <div ng-repeat="movimento in movimenti" >
+
+          <div class="cd-timeline-block">
+
+            <div ng-if="movimento.importo<0" class="cd-timeline-picture text-center red">
+              <img ng-src="/img/{{activity.profilePicture}}"></img>
+            </div>
+
+            <div ng-if="movimento.importo>0" class="cd-timeline-picture text-center green">
+              <img ng-src="/img/{{activity.profilePicture}}"></img>
+            </div>
+
+            <div ng-if="movimento.importo<0" class="cd-timeline-content padding red">
+            	<h5 class="marginBottom0 marginTop0">{{movimento.nome}}</h5>
+            	<p class="marginTop5 cd-author">{{movimento.data}}<span class="timelineText" style="float:right">{{movimento.importo}}</span></p>
+
+            </div>
+            <div ng-if="movimento.importo>0" class="cd-timeline-content padding green">
+              <h5 class="marginBottom0 marginTop0">{{movimento.nome}}</h5>
+              <p class="marginTop5 cd-author">{{movimento.data}}<span class="timelineText" style="float:right">{{movimento.importo}}</span></p>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
   </ion-content>
+
+
+
 </ion-view>
