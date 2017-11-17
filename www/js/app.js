@@ -22,7 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
 })
 
-.service('sharedProperties', function () {
+.service('sharedProperties', function() {
         var id_utente;
 
         return {
