@@ -1,14 +1,38 @@
 <ion-view view-title="Entrate">
   <ion-content>
-    <h1>Entrate</h1>
     <ion-list>
-      <ion-item ng-repeat="entrata in entrata" href="#/app/playlists/{{entrata.id_entrata}}">
-        {{entrata.nome}}
-        <br>
-        {{entrata.importo}}
-        <br>
-        {{entrata.data}}
-      </ion-item>
-    </ion-list>
+      <form> <br>
+        <div style="padding-bottom: 2%; width: 100%;"><center>
+        <input style="border: 1px solid; width: 60%; border-radius: 15px;" type="text" placeholder="Nome" ng-model="nome"></input></center>
+      </div>
+      <div style="padding-bottom: 2%; width: 100%"><center>
+        <input style="border: 1px solid; width:60%; border-radius: 15px;" type="number" placeholder="Importo" ng-model="importo"></input></center>
+      </div>
+      <div style="padding-bottom: 2%; width:100%;"><center>
+        <input style="border: 1px solid; width:60%; border-radius: 15px;" type="datetime-local" placeholder="Inserisci la data" ng-model="data"></input></center>
+      </div>
+      <div style="padding-bottom: 2%; width: 100%"><center>
+        <input style="border: 1px solid; width:60%;border-radius: 15px;" type="number" placeholder="Inserisci id_tipo" ng-model="id_tipo"></input></center>
+      </div>
+      </form>
+      <br>
+    <center><a href="http://portafoglio.altervista.org/insert.php?nome={{nome}}&importo={{importo}}&data={{data}}&id_tipo={{id_tipo}}&tabella=entrate"
+       <button class="button button-positive" style="border-radius: 50%">
+          Aggiungi Entrata
+        </button>
+      </a>
+     </center>
+  <!--   <div ng-repeat="entrata in entrate" href="#/app/playlists/{{entrata.id_entrate}}">
+       <div style="border-radius: 5%; border:2px solid; margin-right: 2%; margin-left:2%;margin-bottom: 5%;">
+      <b><h2>{{entrata.nome}}</h2></b>
+   <br>
+      € {{entrata.importo}}
+   <br>
+      {{entrata.data}}
+   <br>
+       {{entrata.id_tipo}}
+     </div>
+   </div>-->
+   </ion-list>
   </ion-content>
 </ion-view>
