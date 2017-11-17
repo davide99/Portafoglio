@@ -90,7 +90,29 @@ angular.module('starter', ['ionic', 'starter.controllers'])
             controller: 'CronologiaCtrl'
           }
         }
-      });
+      })
+
+      .state('app.cronologiaEntrate', {
+          url: '/cronologiaEntrate',
+          views: {
+            'menuContent': {
+              templateUrl: 'templates/cronologiaEntrate.html',
+              controller: 'CronologiaEntrateCtrl'
+            }
+          }
+        })
+        .state('app.cronologiaUscite', {
+            url: '/cronologiaUscite',
+            views: {
+              'menuContent': {
+                templateUrl: 'templates/cronologiaUscite.html',
+                controller: 'CronologiaUsciteCtrl'
+              }
+            }
+          });
+
+
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/login');
 });
