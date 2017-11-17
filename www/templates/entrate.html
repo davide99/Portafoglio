@@ -3,21 +3,26 @@
     <ion-list>
       <form> <br>
         <div style="padding-bottom: 2%; width: 100%;"><center>
-        <input style="border: 1px solid; width: 60%; border-radius: 15px;" type="text" placeholder="Nome" ng-model="nome"></input></center>
+        <input style="border: 2px solid; width: 60%; border-radius: 7px;" type="text" placeholder="Nome" ng-model="nome"></input></center>
       </div>
       <div style="padding-bottom: 2%; width: 100%"><center>
-        <input style="border: 1px solid; width:60%; border-radius: 15px;" type="number" placeholder="Importo" ng-model="importo"></input></center>
+        <input style="border: 2px solid; width:60%; border-radius: 7px;" type="number" placeholder="Importo" ng-model="importo"></input></center>
       </div>
       <div style="padding-bottom: 2%; width:100%;"><center>
-        <input style="border: 1px solid; width:60%; border-radius: 15px;" type="datetime-local" placeholder="Inserisci la data" ng-model="data"></input></center>
+        <input style="border: 2px solid; width:60%; border-radius: 7px;" type="datetime-local" placeholder="Inserisci la data" ng-model="data"></input></center>
       </div>
       <div style="padding-bottom: 2%; width: 100%"><center>
-        <input style="border: 1px solid; width:60%;border-radius: 15px;" type="number" placeholder="Inserisci id_tipo" ng-model="id_tipo"></input></center>
+        <input style="border: 2px solid; width:60%;border-radius: 7px;" type="number" placeholder="Inserisci id_tipo" ng-model="id_tipo"></input></center>
       </div>
       </form>
       <br>
-    <center><a href="http://portafoglio.altervista.org/insert.php?nome={{nome}}&importo={{importo}}&data={{data}}&id_tipo={{id_tipo}}&tabella=entrate"
+<<<<<<< HEAD
+    <center><a href="http://portafoglio.altervista.org/insert.php?nome={{nome}}&importo={{importo}}&data={{data}}&id_tipo={{id_tipo}}&tabella=entrate&id_utente={{$rootScope.id_utente}}"
        <button class="button button-positive" style="border-radius: 50%">
+=======
+    <center><a href="http://portafoglio.altervista.org/insert.php?nome={{nome}}&importo={{importo}}&data={{data}}&id_tipo={{id_tipo}}&tabella=entrate"
+       <button class="button button-block button-balanced" style="width:60%">
+>>>>>>> b3d006707721b7401107086681daf10c997a6d3b
           Aggiungi Entrata
         </button>
       </a>
