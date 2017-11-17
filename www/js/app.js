@@ -82,34 +82,37 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       })
 
-    .state('app.cronologia', {
-        url: '/cronologia',
+      .state('app.tabs', {
+        url: '/tabs',
         views: {
           'menuContent': {
-            templateUrl: 'templates/cronologia.html',
-            controller: 'CronologiaCtrl'
+            templateUrl: 'templates/tabs.html'
+
           }
         }
       })
 
-      .state('app.cronologiaEntrate', {
-          url: '/cronologiaEntrate',
-          views: {
-            'menuContent': {
-              templateUrl: 'templates/cronologiaEntrate.html',
-              controller: 'CronologiaEntrateCtrl'
-            }
+
+
+    .state('app.tabs.cronologiaEntrate', {
+      url: '/cronologiaEntrate',
+      views: {
+        'tabs-cronologiaEntrate': {
+          templateUrl: 'templates/cronologiaEntrate.html',
+          controller: 'CronologiaEntrateCtrl'
+        }
+      }
+    })
+
+    .state('app.tabs.cronologiaUscite', {
+        url: '/cronologiaUscite',
+        views: {
+          'tabs-cronologiaUscite': {
+            templateUrl: 'templates/cronologiaUscite.html',
+            controller: 'CronologiaUsciteCtrl'
           }
-        })
-        .state('app.cronologiaUscite', {
-            url: '/cronologiaUscite',
-            views: {
-              'menuContent': {
-                templateUrl: 'templates/cronologiaUscite.html',
-                controller: 'CronologiaUsciteCtrl'
-              }
-            }
-          });
+        }
+      });
 
 
 

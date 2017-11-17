@@ -1,6 +1,24 @@
-<ion-view view-title="Login">
+<ion-view view-title="Login" hide-nav-bar="true">
   <ion-content>
-    <p>eyerty</p>
-    {{loginData.p}}
+    <h1 style="text-align: center">Portafoglio</h1>
+
+    <ion-list>
+       <label class="item item-input">
+          <input type="text" placeholder="Username" ng-model="loginData.username" />
+       </label>
+
+       <label class="item item-input">
+          <input type="text" placeholder="Password" ng-model="loginData.password" />
+       </label>
+
+
+    </ion-list>
+
+    <div align="center" style="margin: 10px">
+      <button class="button button-positive button-full" ng-click="doLogin()">
+         Login
+      </button>
+      Non hai un account? <a href="#">Registrati</a>
+    </div>
   </ion-content>
 </ion-view>
