@@ -1,6 +1,6 @@
 
 angular.module('starter.controllers')
-.controller('CronologiaCtrl', function($scope, $http) {
+.controller('CronologiaEntrateCtrl', function($scope, $http) {
   var link = "http://portafoglio.altervista.org/select.php";
   $scope.entrate = null;
 
