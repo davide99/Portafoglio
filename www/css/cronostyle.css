@@ -116,6 +116,7 @@ Main components
 }
 
 .cd-timeline-content {
+  height: 60px;
   position: relative;
   margin-left: 60px;
   background: white;
