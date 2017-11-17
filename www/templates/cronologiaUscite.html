@@ -1,6 +1,22 @@
 <ion-view view-title="Cronologia Uscite" >
   <ion-content class="padding" >
-      <p>cronologia uscite</p>
+      <section id="cd-timeline" class="cd-container">
+        <div ng-repeat="uscita in uscite" >
+
+          <div class="cd-timeline-block">
+
+            <div class="cd-timeline-picture text-center red">
+              <img ng-src="/img/{{activity.profilePicture}}"></img>
+            </div>
+
+            <div class="cd-timeline-content padding red">
+            	<h5 class="marginBottom0 marginTop0">{{uscita.nome}}</h5>
+            	<p class="marginTop5 cd-author">{{uscita.data}}<span class="timelineText" style="float:right">{{uscita.importo}}</span></p>
+
+            </div>
+          </div>
+        </div>
+      </section>
   </ion-content>
 
 
