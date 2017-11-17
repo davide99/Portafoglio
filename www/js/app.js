@@ -22,6 +22,19 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
 })
 
+.service('sharedProperties', function () {
+        var id_utente;
+
+        return {
+            getIdUtente: function () {
+                return id_utente;
+            },
+            setIdUtente: function(value) {
+                id_utente = value;
+            }
+        };
+    })
+
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 

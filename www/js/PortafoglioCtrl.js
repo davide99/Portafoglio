@@ -1,5 +1,5 @@
 
 angular.module('starter.controllers')
-.controller('PortafoglioCtrl', function($scope, $http, $rootScope) {
-  console.log($rootScope.id_utente);
+.controller('PortafoglioCtrl', function($scope, sharedProperties) {
+  console.log(sharedProperties.getIdUtente());
 });
