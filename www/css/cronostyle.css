@@ -201,8 +201,8 @@ Main components
   color: #8a6de9;
 }
 /*DARK*/
-.dark {
-  border-color: #444;
+.green {
+  border-color: forestgreen;
 }
 .dark i {
   color: #444;
