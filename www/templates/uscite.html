@@ -1,5 +1,61 @@
 <ion-view view-title="Uscite">
   <ion-content>
-    <h1>Uscite</h1>
+
+    <div class="header">
+      <h1>Uscite</h1>
+    </div>
+
+    <hr>
+
+  <ion-list>
+
+    <div class="form">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Nome</span>
+        <input type="text" placeholder="Mario" ng-model="nome">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Data</span>
+        <input type="datetime-local" ng-model="data">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Importo</span>
+        <input type="text" placeholder="$100" ng-model="importo">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">id_Tipo</span>
+        <input type="text" placeholder="1...2...3" ng-model="id_tipo">
+      </label>
+    </div>
+
+    <br>
+
+    <a href="http://portafoglio.altervista.org/insert.php?tabella=uscite&nome={{nome}}&data={{data}}&importo={{importo}}&id_tipo={{id_tipo}}">
+    <button ion-button class="button button-light"><h5><u> Aggiungi Uscita alla lista</u></h5></button ion-button>
+    </a>
+
+    <br>
+    <br>
+    <!--
+    <hr>
+
+    <div class="lista">
+      <h3>Lista Uscite</h3>
+    </div>
+
+    <ion-item ng-repeat="uscita in uscite" href="#/app/playlists/{{uscita.id_uscita}}">
+      Nome : {{uscita.nome}}
+      <br>
+      DATA : {{uscita.data}}
+      <br>
+      $ {{uscita.importo}}
+      <br>
+      Tipo : {{uscita.id_tipo}}
+    </ion-item>
+   </ion-list>
+ -->
   </ion-content>
 </ion-view>
