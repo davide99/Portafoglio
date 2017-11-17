@@ -116,6 +116,7 @@ Main components
 }
 
 .cd-timeline-content {
+  height: 60px;
   position: relative;
   margin-left: 60px;
   background: white;
@@ -153,8 +154,7 @@ Main components
   height: 0;
   width: 0;
   border: 7px solid transparent;
-  border-right: 7px solid white;
-  border-right-color: inherit;
+
 }
 
 /*COLORS*/
@@ -201,8 +201,8 @@ Main components
   color: #8a6de9;
 }
 /*DARK*/
-.dark {
-  border-color: #444;
+.green {
+  border-color: forestgreen;
 }
 .dark i {
   color: #444;
