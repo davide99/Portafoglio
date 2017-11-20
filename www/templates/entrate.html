@@ -1,6 +1,8 @@
 <ion-view view-title="Entrate">
   <ion-content>
     <ion-list>
+
+      <!--
       <form> <br>
         <div style="padding-bottom: 2%; width: 100%;"><center>
         <input style="border: 2px solid; width: 60%; border-radius: 7px;" type="text" placeholder="Nome" ng-model="nome"></input></center>
@@ -15,11 +17,34 @@
         <input style="border: 2px solid; width:60%;border-radius: 7px;" type="number" placeholder="Inserisci id_tipo" ng-model="id_tipo"></input></center>
       </div>
       </form>
+      !-->
+      <label class="item item-input">
+        <i class="icon ion-android-send placeholder-icon"></i>
+        <input type="text" placeholder="Nome" ng-model="Nome" />
+      </label>
+
+      <label class="item item-input">
+        <i class="icon ion-social-euro placeholder-icon"></i>
+        <input type="number" placeholder="Importo" ng-model="Importo" />
+      </label>
+
+      <label class="item item-input">
+        <i class="icon ion-calendar placeholder-icon"></i>
+        <input type="datetime-local" placeholder="Data" ng-model="Data" />
+      </label>
+
+      <label class="item item-input">
+        <i class="icon ion-pound placeholder-icon"></i>
+        <input type="number" placeholder="inserisci id_tipo" ng-model="id_tipo" />
+      </label>
+
       <br>
-    <center><a href="http://portafoglio.altervista.org/insert.php?nome={{nome}}&importo={{importo}}&data={{data}}&id_tipo={{id_tipo}}&tabella=entrate"
+
+    <center>
+      <a href="http://portafoglio.altervista.org/insert.php?nome={{nome}}&importo={{importo}}&data={{data}}&id_tipo={{id_tipo}}&tabella=entrate"
        <button class="button button-block button-balanced" style="width:60%">
           Aggiungi Entrata
-        </button>
+       </button>
       </a>
      </center>
   <!--   <div ng-repeat="entrata in entrate" href="#/app/playlists/{{entrata.id_entrate}}">
