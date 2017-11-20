@@ -5,7 +5,8 @@
       </ion-nav-back-button>
 
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        <button class="button button-icon button-clear" menu-toggle="left"
+                ng-class="$ionicSideMenuDelegate.isOpen() ? 'ion-android-arrow-back' : 'ion-navicon'">
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
