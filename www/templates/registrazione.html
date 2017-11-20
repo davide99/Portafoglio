@@ -26,14 +26,24 @@
       </label>
 
       <label class="item item-input">
+        <i class="icon ion-locked placeholder-icon"></i>
+        <input type="password" placeholder="Ripeti password" ng-model="data.password1" />
+      </label>
+
+      <label class="item item-input">
         <i class="icon ion-email placeholder-icon"></i>
         <input type="text" placeholder="E-Mail" ng-model="data.email" />
+      </label>
+
+      <label class="item item-input">
+        <i class="icon ion-cash placeholder-icon"></i>
+        <input type="number" placeholder="Saldo iniziale" ng-model="data.saldo" />
       </label>
 
     </ion-list>
 
     <div align="center" style="margin: 10px">
-      <button class="button button-positive button-full" ng-click="doLogin()">
+      <button class="button button-positive button-full" ng-click="registra()" ng-disabled="data.bad">
         Registrati
       </button>
     </div>

@@ -1,11 +1,11 @@
 
 angular.module('starter.controllers')
-.controller('ProfiloCtrl', function($scope, $http, $rootScope) {
+.controller('ProfiloCtrl', function($scope, $http, sharedProperties) {
 
   getUser();
   getMovimentiMese();
 
-  console.log($rootScope.id_utente);
+  console.log(sharedProperties.getIdUtente());
 
 
 
