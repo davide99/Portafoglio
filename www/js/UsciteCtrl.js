@@ -1,6 +1,5 @@
 
 angular.module('starter.controllers')
-
 .controller('UsciteCtrl', function($scope, $http) {
   var link  = "http://portafoglio.altervista.org/select.php"
   $scope.uscite = null;
