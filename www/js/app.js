@@ -55,16 +55,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  .state('app.portafoglio', {
-    url: '/portafoglio',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/portafoglio.html',
-        controller: 'PortafoglioCtrl'
-      }
-    }
-  })
-
   .state('app.entrate', {
       url: '/entrate',
       views: {

@@ -3491,7 +3491,7 @@ ion-infinite-scroll {
 
 /* If you change these, change platform.scss as well */
 .has-header {
-  top: 50px; }
+  top: 44px; }
 
 .no-header {
   top: 0; }
@@ -3506,7 +3506,7 @@ ion-infinite-scroll {
   top: 137px; }
 
 .has-footer {
-  bottom: 50px; }
+  bottom: 44px; }
 
 .has-subfooter {
   bottom: 88px; }
