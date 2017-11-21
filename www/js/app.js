@@ -20,8 +20,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       StatusBar.styleDefault();
     }
   });
-
-  $rootScope.saldo = 0;
 })
 
 .service('sharedProperties', function($location) {

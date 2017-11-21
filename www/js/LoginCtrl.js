@@ -1,10 +1,10 @@
 
 angular.module('starter.controllers')
-.controller('LoginCtrl', function($scope, $http, $ionicPopup, $location, sharedProperties) {
+.controller('LoginCtrl', function($scope, $http, $ionicPopup, $state, sharedProperties) {
   $scope.loginData={};
   //di default è impostato per ricordare le credenziali
   $scope.loginData.remember=true;
-  
+
   //funzione per il login
   $scope.doLogin = function(){
     //ottiene l'id dell'utente dato username e password
@@ -40,7 +40,7 @@ angular.module('starter.controllers')
           localStorage.setItem("password", $scope.loginData.password);
         }
 
-        $location.path('app/profilo');
+        $state.go('app.profilo', {}, {reload: true});
       }
 
     }).catch(function(error){
