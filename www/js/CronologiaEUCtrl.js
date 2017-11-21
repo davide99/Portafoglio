@@ -42,7 +42,7 @@ angular.module('starter.controllers')
         var ora=o[i];
 
         $scope.movimenti[i].data=data+", "+ora;
-        console.log($scope.movimenti[i].data);
+      
       }
 
     }).catch(function(error){

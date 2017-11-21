@@ -40,7 +40,7 @@ function getLongData(){
       var ora=o[i];
 
       $scope.entrate[i].data=data+", "+ora;
-      console.log($scope.entrate[i].data);
+      
     }
 
   }).catch(function(error){

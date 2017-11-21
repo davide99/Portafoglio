@@ -89,11 +89,12 @@ Main components
   border-color: #4a87ee;
   border-style: solid;
   border-width: 2px;
-  padding-top:5px;
+  padding-top:3px;
   background: white;
 }
 .cd-timeline-icon i {
-  color: #4a87ee;
+  color: grey;
+
 }
 .cd-timeline-picture {
   position: absolute;

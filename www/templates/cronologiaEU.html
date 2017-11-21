@@ -5,13 +5,15 @@
 
           <div class="cd-timeline-block">
 
-            <div ng-if="movimento.importo<0" class="cd-timeline-picture text-center red">
-              <img ng-src="/img/{{activity.profilePicture}}"></img>
+            <div ng-if="movimento.importo<0" class="cd-timeline-icon text-center red"  >
+              <i class="{{movimento.descrizione}}" style="font-size:30px" ></i>
             </div>
 
-            <div ng-if="movimento.importo>0" class="cd-timeline-picture text-center green">
-              <img ng-src="/img/{{activity.profilePicture}}"></img>
+            <div ng-if="movimento.importo>0" class="cd-timeline-icon text-center green"  >
+              <i class="{{movimento.descrizione}}" style="font-size:30px" ></i>
             </div>
+
+
 
             <div ng-if="movimento.importo<0" class="cd-timeline-content padding red">
             	<h5 class="marginBottom0 marginTop0">{{movimento.nome}}</h5>

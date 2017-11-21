@@ -38,7 +38,7 @@ angular.module('starter.controllers')
         var ora=o[i];
 
         $scope.uscite[i].data=data+", "+ora;
-        console.log($scope.uscite[i].data);
+      
       }
 
     }).catch(function(error){
