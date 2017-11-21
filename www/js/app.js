@@ -29,7 +29,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
             getIdUtente: function () {
                 if(id_utente == undefined)
                   $location.path('app/login');
-                return id_utente;
+                else
+                  return id_utente;
             },
             getNome: function () {
                 return nome;
