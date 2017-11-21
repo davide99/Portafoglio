@@ -1,6 +1,7 @@
 
 angular.module('starter.controllers')
 .controller('EntrateCtrl', function($scope, sharedProperties, $http) {
+  //Funzione
   $scope.inserisci = function(){
     $scope.id_utente=sharedProperties.getIdUtente();
     var link1 = "http://portafoglio.altervista.org/update.php";
@@ -17,16 +18,15 @@ angular.module('starter.controllers')
           var nuovo_saldo = saldo + $scope.importo;
           console.log('nuovo_saldo',$scope.importo);
           console.log('saldo',response.data);
-        /*  $.post(link,importo){
             $http.get(link1,{
               params: {
                 tabella: 'entrate',
                 importo:  nuovo_saldo
               }
             }).then(function(response){
+              console.log(response.data);
           })
 
-        }*/
         })
     }
   });
