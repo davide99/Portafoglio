@@ -24,7 +24,7 @@ angular.module('starter.controllers')
 
         $http.get(link1,{
           params: {
-            tabella: 'entrate',
+            tabella: 'uscite',
             importo:  nuovo_saldo
           }
         }).then(function(response){
