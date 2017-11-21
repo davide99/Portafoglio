@@ -1,4 +1,15 @@
 <ion-side-menus enable-menu-with-back-views="false">
+  <style media="screen">
+    .arrow{
+      border: solid black;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 10px;
+  transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    float: right;
+    border-color: gray;
+    }
   </style>
   <ion-side-menu-content>
     <ion-nav-bar class="bar-positive">
@@ -21,10 +32,22 @@
     <ion-content>
       <ion-list>
         <ion-item menu-close href="#/app/profilo">
-          <i class="icon ion-ios-bookmarks">
-          Profilo
-          </i>
+          <div class="row">
+            <div class="col">
+              <img src="http://portafoglio.altervista.org/Login/photos/{{menu.id}}.jpg" style="width:50px;height:auto;border-radius:25px;border: 2px solid #387ef5;">
+            </div>
+            <div class="col" style="margin: auto;">
+              <b>{{menu.nome}} {{menu.cognome}}</b><br>
+              <b>Saldo: </b>{{menu.saldo}}
+            </div>
+            <div class="col" style="margin: auto;">
+              <i class="arrow"></i>
+            </div>
+          </div>
+
         </ion-item>
+      </ion-list>
+      <ion-list>
         <ion-item menu-close href="#/app/entrate">
         <i class="icon ion-android-add-circle">
           Entrate

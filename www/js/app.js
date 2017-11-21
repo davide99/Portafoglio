@@ -22,15 +22,35 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
 })
 
-.service('sharedProperties', function() {
-        var id_utente;
+.service('sharedProperties', function($location) {
+        var id_utente, nome, cognome, saldo;
 
         return {
             getIdUtente: function () {
+                if(id_utente == undefined)
+                  $location.path('app/login');
                 return id_utente;
+            },
+            getNome: function () {
+                return nome;
+            },
+            getCognome: function () {
+                return cognome;
+            },
+            getSaldo: function () {
+                return saldo;
             },
             setIdUtente: function(value) {
                 id_utente = value;
+            },
+            setNome: function(value) {
+                nome = value;
+            },
+            setCognome: function(value) {
+                cognome = value;
+            },
+            setSaldo: function(value) {
+                saldo = value;
             }
         };
     })

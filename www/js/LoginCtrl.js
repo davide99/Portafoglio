@@ -4,7 +4,7 @@ angular.module('starter.controllers')
   $scope.loginData={};
   //di default è impostato per ricordare le credenziali
   $scope.loginData.remember=true;
-
+  
   //funzione per il login
   $scope.doLogin = function(){
     //ottiene l'id dell'utente dato username e password
@@ -31,6 +31,9 @@ angular.module('starter.controllers')
       } else {
         //Salvo l'id nelle sharedProperties
         sharedProperties.setIdUtente(id);
+        sharedProperties.setNome(response.data.nome);
+        sharedProperties.setCognome(response.data.cognome);
+        sharedProperties.setSaldo(response.data.saldo);
 
         if($scope.loginData.remember){
           localStorage.setItem("username", $scope.loginData.username);

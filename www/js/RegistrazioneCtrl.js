@@ -22,6 +22,7 @@ angular.module('starter.controllers')
   }
 
   $scope.registra = function(){
+
     if(!called)
       called = true;
     else
@@ -72,6 +73,22 @@ angular.module('starter.controllers')
       }).then(function(response){
         var id = response.data.id_utente;
         sharedProperties.setIdUtente(id);
+        sharedProperties.setNome(response.data.nome);
+        sharedProperties.setCognome(response.data.cognome);
+        sharedProperties.setSaldo(response.data.saldo);
+
+        var fd = new FormData();
+        //Take the first selected file
+        fd.append("photo", document.getElementById('photo').files[0]);
+        fd.append("id", id);
+        var uploadUrl = 'http://portafoglio.altervista.org/Login/uploadPhoto.php';
+
+        $http.post(uploadUrl, fd, {
+            headers: {'Content-Type': undefined },
+            transformRequest: angular.identity
+        });
+
+
         $location.path('app/profilo');
 
       }).catch(function(error){

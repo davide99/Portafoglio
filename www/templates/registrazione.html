@@ -1,5 +1,29 @@
 <ion-view view-title="Registrazione" hide-nav-bar="true" cache-view="false">
   <ion-content>
+    <style media="screen">
+    .upload-btn-wrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .btn {
+      border: 0px;
+      background-color: white;
+      color: gray;
+      padding: 8px;
+      font-size: 4vw;
+    }
+
+    .upload-btn-wrapper input[type=file] {
+      font-size: 1vw;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+    }
+
+    </style>
     <h1 style="text-align: center; padding-top: 30px;">Portafoglio</h1>
     <h3 style="text-align: center;font-style: italic;padding-bottom: 30px">Registrazione</h3>
 
@@ -38,6 +62,15 @@
       <label class="item item-input">
         <i class="icon ion-cash placeholder-icon"></i>
         <input type="number" placeholder="Saldo iniziale" ng-model="data.saldo" />
+      </label>
+
+      <label class="item item-input">
+        <i class="icon ion-cash placeholder-icon"></i>
+        <div class="upload-btn-wrapper">
+          <button class="btn">Carica foto</button>
+          <!--<input type="file" name="photo" onchange="angular.element(this).scope().uploadFile(this.files)" />-->
+          <input type="file" name="photo" id="photo"/>
+        </div>
       </label>
 
     </ion-list>
