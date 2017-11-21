@@ -155,6 +155,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
             controller: 'CronologiaEUCtrl'
           }
         }
+      })
+
+      .state('app.tabs.ricerca', {
+        url: '/ricerca',
+        views: {
+          'tabs-ricerca': {
+            templateUrl: 'templates/ricerca.html',
+            controller: 'ricercaCtrl'
+          }
+        }
       });
 
 
