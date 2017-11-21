@@ -2,22 +2,39 @@
   <style>
 
   .buttonsBar{
-      /*padding:10px;*/
+      display:flex;
+      justify-content:space-around;
       margin:10px;
       border-radius:40px;
       background-color:rgba(60,113,249,0.4);
+      height: 40px;
   }
+
 
   .barButton{
-    /*padding:10px;*/
-    border-radius:40px;
-    width: 32%;
+    height: 100%;
+    display:inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 55px;
+    font-size: 4vw;
+    color:black;
+    border-radius:45px;
+    width: 33%;
     background-color:rgba(60,113,249,0);
+    z-index: 1;
+    padding: 0 8px;
+    min-width: initial;
+    min-height: 31px;
+    font-weight: 400;
+    line-height: 32px;
+    border-color: transparent;
   }
 
-  .barButton:hover {
-    background-color:rgba(60,113,249,0.8);
+  .selezionato {
+    background-color:rgba(60,113,249,1);
   }
+
 
   </style>
 
@@ -29,9 +46,9 @@
 
     <div>
     <div class="buttonsBar">
-      <button class="barButton button">Mese</button>
-      <button class="barButton button">Settimana</button>
-      <button class="barButton button" style="float:right">Giorno</button>
+      <button class="barButton " ng-click="selezionaPeriodo(1)" ng-class="{'selezionato': tabAttivo == 1}">Mese</button>
+      <button class="barButton " ng-click="selezionaPeriodo(2)" ng-class="{'selezionato': tabAttivo == 2}">Settimana</button>
+      <button class="barButton " ng-click="selezionaPeriodo(3)" style="float:right" ng-class="{'selezionato': tabAttivo == 3}">Giorno</button>
     </div>
   </div>
 

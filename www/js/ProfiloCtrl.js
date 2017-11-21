@@ -1,7 +1,7 @@
 
 angular.module('starter.controllers')
 .controller('ProfiloCtrl', function($scope, $http, sharedProperties) {
-
+  $scope.tabAttivo = 1;
 
   $scope.$root.showMenuIcon = true;
 
@@ -11,7 +11,10 @@ angular.module('starter.controllers')
 
 
   getUser();
-  getMovimentiMese();
+  var d = new Date();
+  d.setHours(0,0,0,0);
+  var month = d.getMonth()+1;
+  getMovimenti(month,"","");
 
   console.log(sharedProperties.getIdUtente());
 
@@ -28,23 +31,26 @@ angular.module('starter.controllers')
   		}
   	}).then(function(response){
   		$scope.utente = response.data.utenti[0];
-  		console.log($scope.utente);
+  		// console.log($scope.utente);
   	}).catch(function(error){
   		console.log(error);
   	});
   }
 
-  function getMovimentiMese(){
+  function getMovimenti(mese,settimana,giorno){
     var link = "http://portafoglio.altervista.org/getCronologia.php";
   	$scope.movimenti = null;
 
   	$http.get(link,{
   		params: {
         id_utente: 1,
-        mese:11,
+        mese:mese,
+        // settimana:settimana,
+        giorno:giorno
   		}
   	}).then(function(response){
   		$scope.movimenti = response.data.movimenti;
+      $scope.selezionaPeriodo($scope.tabAttivo);
   		console.log($scope.movimenti);
   	}).catch(function(error){
   		console.log(error);
@@ -55,25 +61,22 @@ angular.module('starter.controllers')
     // Load the Visualization API and the corechart package.
     google.charts.load('current', {'packages':['corechart']});
 
-    // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(drawChart);
-
     // Callback that creates and populates a data table,
     // instantiates the pie chart, passes in the data and
     // draws it.
     function drawChart() {
 
+       // $scope.datiMovimenti = [['Giorno', 'Entrate', 'Uscite'],
+       //          ['14',  500, -100],
+       //          ['15',  1500, -200],
+       //          ['16',  0, 0],
+       //          ['17',  2000, -1500],
+       //          ['18',  0, 0],
+       //          ['19',  0, 0],
+       //          ['20',  450, -50]];
+
       // Create the data table.
-      var data = new google.visualization.arrayToDataTable([
-          ['Giorno', 'Entrate', 'Uscite'],
-          ['14',  500, 100],
-          ['15',  1500, 200],
-          ['16',  0, 0],
-          ['17',  2000, 1500],
-          ['18',  0, 0],
-          ['19',  0, 0],
-          ['20',  450, 50]
-        ]);
+      var data = new google.visualization.arrayToDataTable($scope.datiMovimenti);
 
       // Set chart options
       var options = {
@@ -89,6 +92,146 @@ angular.module('starter.controllers')
       chart.draw(data, options);
     }
 
+$scope.selezionaPeriodo=function(tab){
 
+  $scope.tabAttivo = tab;
+  $scope.datiMovimenti = [['Giorno', 'Entrate', 'Uscite']];
+
+  if (tab==1) {
+      for (var i = 1; i < 32; i++) {
+        var entry = creaVettoreGiornoMese(i);
+        $scope.datiMovimenti.push(entry);
+      }
+
+  }else if(tab==2){
+    for (var i = 0; i < 7; i++) {
+      var entry = creaVettoreGiornoSettimana(i);
+      $scope.datiMovimenti.push(entry);
+    }
+
+  }else{
+    $scope.datiMovimenti = [['Ora', 'Entrate', 'Uscite']];
+    for (var i = 0; i < 25; i++) {
+      var entry = creaVettoreGiorno(i);
+      $scope.datiMovimenti.push(entry);
+    }
+
+  }
+
+  // Set a callback to run when the Google Visualization API is loaded.
+  google.charts.setOnLoadCallback(drawChart);
+
+}
+
+// $scope.selezionaPeriodo(1);
+
+function creaVettoreGiornoMese(giorno){
+  var movimenti = $scope.movimenti
+  var entrate = 0;
+  var uscite = 0;
+
+  for (var i = 0; i < movimenti.length; i++) {
+    if (getDayOfMonth(movimenti[i].data)==giorno) {
+      if (movimenti[i].importo > 0) {
+        entrate += parseFloat(movimenti[i].importo);
+      }else{
+        uscite += parseFloat(movimenti[i].importo);
+      }
+    }
+  }
+
+  // console.log(String(giorno),entrate,uscite);
+
+  return [String(giorno),entrate,uscite];
+}
+
+function creaVettoreGiornoSettimana(giorno){
+  var curr = d; // get current date
+  var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+  var last = first + 6; // last day is the first day + 6
+  firstday = new Date(curr.setDate(first));
+  lastday = new Date(curr.setDate(curr.getDate()+6));
+
+  // console.log("first" , firstday);
+   // console.log("last" , lastday);
+   // var currentDate = new Date($scope.movimenti[5].data);
+  // console.log("current" , currentDate);
+  //
+   // console.log(new Date($scope.movimenti[5].data) >= firstday);
+  // console.log(new Date($scope.movimenti[1].data) <= lastday);
+
+  var giorni = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  var movimenti = $scope.movimenti
+  var entrate = 0;
+  var uscite = 0;
+
+  for (var i = 0; i < movimenti.length; i++) {
+    if ((new Date(movimenti[i].data) >= firstday && new Date(movimenti[i].data) <= lastday)) {
+        // console.log("in settimana");
+        if (getDayOfWeek(movimenti[i].data)==giorni[giorno]) {
+          if (movimenti[i].importo > 0) {
+            entrate += parseFloat(movimenti[i].importo);
+          }else{
+            uscite += parseFloat(movimenti[i].importo);
+          }
+        }
+      }
+    }
+
+    // console.log(String(giorni[giorno]),entrate,uscite);
+
+  return [String(giorni[giorno]),entrate,uscite];
+}
+
+function creaVettoreGiorno(ora){
+
+
+  var start = new Date();
+start.setHours(0,0,0,0);
+
+var end = new Date();
+end.setHours(23,59,59,999);
+  // console.log("start", start);
+  // console.log("end" , end);
+  var movimenti = $scope.movimenti
+  var entrate = 0;
+  var uscite = 0;
+  // console.log(getHourOfDay(movimenti[2].data));
+
+  for (var i = 0; i < movimenti.length; i++) {
+    if ((new Date(movimenti[i].data) >= start && new Date(movimenti[i].data) <= end)) {
+        if (getHourOfDay(movimenti[i].data)==ora) {
+          if (movimenti[i].importo > 0) {
+            entrate += parseFloat(movimenti[i].importo);
+          }else{
+            uscite += parseFloat(movimenti[i].importo);
+          }
+        }
+      }
+    }
+
+    // console.log(String(ora),entrate,uscite);
+
+  return [String(ora),entrate,uscite];
+}
+
+function getDayOfMonth(data){
+  return data.split("-")[2].substring(0,2);
+}
+
+function getDayOfWeek(date) {
+  var dayOfWeek = new Date(date).getDay();
+  return isNaN(dayOfWeek) ? null : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][dayOfWeek];
+}
+
+function getHourOfDay(data){
+  return data.split("-")[2].substring(2,5);
+}
 
 });
+
+Date.prototype.getWeek = function() {
+  var jan4th = new Date(this.getFullYear(),0,4);
+  return Math.ceil((((this - jan4th) / 86400000) + jan4th.getDay()+1)/7);
+}
