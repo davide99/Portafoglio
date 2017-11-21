@@ -2,15 +2,18 @@
 angular.module('starter.controllers')
 .controller('ProfiloCtrl', function($scope, $http, sharedProperties) {
 
+
   $scope.$root.showMenuIcon = true;
 
   $scope.id_utente = sharedProperties.getIdUtente();
 
   console.log(sharedProperties.getIdUtente());
 
+
   getUser();
   getMovimentiMese();
 
+  console.log(sharedProperties.getIdUtente());
 
 
   function getUser(){

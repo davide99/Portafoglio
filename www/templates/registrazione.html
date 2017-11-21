@@ -6,26 +6,46 @@
     <ion-list>
       <label class="item item-input">
         <i class="icon ion-person placeholder-icon"></i>
-        <input type="text" placeholder="Nome" ng-model="data.Nome" />
+        <input type="text" placeholder="Nome" ng-model="data.nome" />
       </label>
 
+      <label class="item item-input">
+        <i class="icon ion-person placeholder-icon"></i>
+        <input type="text" placeholder="Cognome" ng-model="data.cognome" />
+      </label>
 
-      <div class = "item item-toggle">
-        Ricorda
-        <label class="toggle">
-          <input type="checkbox" ng-model="loginData.remember"/>
-          <div class="track">
-            <div class="handle"></div>
-          </div>
-        </label>
-      </div>
+      <label class="item item-input">
+        <i class="icon ion-person placeholder-icon"></i>
+        <input type="text" placeholder="Username" ng-model="data.username" ng-change="checkUsername()"/>
+        <i class="icon ion-close" style="padding:10px;color:red" ng-show="data.bad"></i>
+      </label>
+
+      <label class="item item-input">
+        <i class="icon ion-locked placeholder-icon"></i>
+        <input type="password" placeholder="Password" ng-model="data.password" />
+      </label>
+
+      <label class="item item-input">
+        <i class="icon ion-locked placeholder-icon"></i>
+        <input type="password" placeholder="Ripeti password" ng-model="data.password1" />
+      </label>
+
+      <label class="item item-input">
+        <i class="icon ion-email placeholder-icon"></i>
+        <input type="text" placeholder="E-Mail" ng-model="data.email" />
+      </label>
+
+      <label class="item item-input">
+        <i class="icon ion-cash placeholder-icon"></i>
+        <input type="number" placeholder="Saldo iniziale" ng-model="data.saldo" />
+      </label>
+
     </ion-list>
 
     <div align="center" style="margin: 10px">
-      <button class="button button-positive button-full" ng-click="doLogin()">
-        Login
+      <button class="button button-positive button-full" ng-click="registra()" ng-disabled="data.bad">
+        Registrati
       </button>
-      Non hai un account? <a href="#">Registrati</a>
     </div>
   </ion-content>
 </ion-view>

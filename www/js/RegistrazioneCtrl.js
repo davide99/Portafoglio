@@ -1,53 +1,85 @@
 
 angular.module('starter.controllers')
 .controller('RegistrazioneCtrl', function($scope, $http, $ionicPopup, $location, sharedProperties) {
-  $scope.loginData={};
-  //di default è impostato per ricordare le credenziali
-  $scope.loginData.remember=true;
+  $scope.data={};
+  $scope.bad = false;
+  var called = false;
 
-  //funzione per il login
-  $scope.doLogin = function(){
-    //ottiene l'id dell'utente dato username e password
-    var link = "http://portafoglio.altervista.org/Login/getIdByUserAndPsw.php";
+  $scope.checkUsername = function(){
+    var link = "http://portafoglio.altervista.org/Login/usernameTaken.php";
 
     $http.get(link,{
       params: {
-        username: $scope.loginData.username,
-        password: $scope.loginData.password
+        username: $scope.data.username,
       }
     }).then(function(response){
-      var id = response.data.id_utente;
-
-      //viene ritornato id=-1 se l'username e la psw non corrispondono a nessuno
-      if(id == -1){
-        var alertPopup = $ionicPopup.alert({
-          title: 'Errore',
-          template: 'Username o password errati'
-        });
-
-        alertPopup.then(function(res) {
-          $scope.loginData.username = $scope.loginData.password = "";
-        });
-      } else {
-        //Salvo l'id nelle sharedProperties
-        sharedProperties.setIdUtente(id);
-
-        if($scope.loginData.remember){
-          localStorage.setItem("username", $scope.loginData.username);
-          localStorage.setItem("password", $scope.loginData.password);
-        }
-
-        //$location.url('app/profilo');
-      }
+      var n = response.data.number;
+      $scope.data.bad = !(n==0);
 
     }).catch(function(error){
       console.log(error);
     });
   }
 
-  if((localStorage.getItem("username") != undefined) && (localStorage.getItem("password") != undefined)){
-    $scope.loginData.username = localStorage.getItem("username");
-    $scope.loginData.password = localStorage.getItem("password");
-    $scope.doLogin();
+  $scope.registra = function(){
+    if(!called)
+      called = true;
+    else
+      return;
+
+    var link = "http://portafoglio.altervista.org/insert.php";
+
+    if($scope.data.password != $scope.data.password1){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Errore',
+        template: 'Le password non corrispondono'
+      });
+
+      return;
+    }
+
+    if($scope.data.username == "" || $scope.data.password == "" ||
+    $scope.data.nome == "" || $scope.data.cognome == "" ||
+    $scope.data.saldo == "" || $scope.data.email == ""){
+
+      var alertPopup = $ionicPopup.alert({
+        title: 'Errore',
+        template: 'Compilare tutti i campi'
+      });
+
+      return;
+    }
+
+    $http.get(link,{
+      params: {
+        tabella: "utenti",
+        username: $scope.data.username,
+        password: $scope.data.password,
+        nome: $scope.data.nome,
+        cognome: $scope.data.cognome,
+        saldo: $scope.data.saldo,
+        email: $scope.data.email
+      }
+    }).then(function(response){
+
+      link = "http://portafoglio.altervista.org/Login/getIdByUserAndPsw.php";
+
+      $http.get(link,{
+        params: {
+          username: $scope.data.username,
+          password: $scope.data.password
+        }
+      }).then(function(response){
+        var id = response.data.id_utente;
+        sharedProperties.setIdUtente(id);
+        $location.path('app/profilo');
+
+      }).catch(function(error){
+        console.log(error);
+      });
+
+    }).catch(function(error){
+      console.log(error);
+    });
   }
 });

@@ -37,7 +37,7 @@ angular.module('starter.controllers')
           localStorage.setItem("password", $scope.loginData.password);
         }
 
-        $location.url('app/profilo');
+        $location.path('app/profilo');
       }
 
     }).catch(function(error){
