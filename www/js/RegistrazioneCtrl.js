@@ -1,28 +1,17 @@
 
 angular.module('starter.controllers')
-.controller('RegistrazioneCtrl', function($scope, $http, $ionicPopup, $location, sharedProperties) {
+.controller('RegistrazioneCtrl', function($scope, $http, $ionicPopup, $state, sharedProperties, utils) {
   $scope.data={};
   $scope.bad = false;
   var called = false;
 
   $scope.checkUsername = function(){
-    var link = "http://portafoglio.altervista.org/Login/usernameTaken.php";
-
-    $http.get(link,{
-      params: {
-        username: $scope.data.username,
-      }
-    }).then(function(response){
-      var n = response.data.number;
-      $scope.data.bad = !(n==0);
-
-    }).catch(function(error){
-      console.log(error);
+    utils.checkUsername($scope.data.username).success(function(data){
+      $scope.data.bad = !(data.number==0);
     });
   }
 
   $scope.registra = function(){
-
     if(!called)
       called = true;
     else
@@ -51,52 +40,26 @@ angular.module('starter.controllers')
       return;
     }
 
-    $http.get(link,{
-      params: {
-        tabella: "utenti",
-        username: $scope.data.username,
-        password: $scope.data.password,
-        nome: $scope.data.nome,
-        cognome: $scope.data.cognome,
-        saldo: $scope.data.saldo,
-        email: $scope.data.email
-      }
-    }).then(function(response){
+    utils.addNewUser(
+      $scope.data.username,
+      $scope.data.password,
+      $scope.data.nome,
+      $scope.data.cognome,
+      $scope.data.email,
+      $scope.data.saldo,
+      document.getElementById('photo').files[0]
+    ).success(function(data){
 
-      link = "http://portafoglio.altervista.org/Login/getIdByUserAndPsw.php";
+      var id = data.id_utente;
 
-      $http.get(link,{
-        params: {
-          username: $scope.data.username,
-          password: $scope.data.password
-        }
-      }).then(function(response){
-        var id = response.data.id_utente;
-        sharedProperties.setIdUtente(id);
-        sharedProperties.setNome(response.data.nome);
-        sharedProperties.setCognome(response.data.cognome);
-        sharedProperties.setSaldo(response.data.saldo);
+      sharedProperties.setIdUtente(data.id_utente);
+      sharedProperties.setNome(data.nome);
+      sharedProperties.setCognome(data.cognome);
+      sharedProperties.setSaldo(data.saldo);
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("password", data.password);
 
-        var fd = new FormData();
-        //Take the first selected file
-        fd.append("photo", document.getElementById('photo').files[0]);
-        fd.append("id", id);
-        var uploadUrl = 'http://portafoglio.altervista.org/Login/uploadPhoto.php';
-
-        $http.post(uploadUrl, fd, {
-            headers: {'Content-Type': undefined },
-            transformRequest: angular.identity
-        });
-
-
-        $location.path('app/profilo');
-
-      }).catch(function(error){
-        console.log(error);
-      });
-
-    }).catch(function(error){
-      console.log(error);
+      $state.go('app.profilo', {}, {reload: true});
     });
   }
 });
