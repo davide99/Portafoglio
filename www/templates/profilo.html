@@ -1,8 +1,43 @@
-<ion-view view-title="Profilo">
+<ion-view view-title="Profilo" cache-view="false">
+  <style>
+
+  .buttonsBar{
+      /*padding:10px;*/
+      margin:10px;
+      border-radius:40px;
+      background-color:rgba(60,113,249,0.4);
+  }
+
+  .barButton{
+    /*padding:10px;*/
+    border-radius:40px;
+    width: 32%;
+    background-color:rgba(60,113,249,0);
+  }
+
+  .barButton:hover {
+    background-color:rgba(60,113,249,0.8);
+  }
+
+  </style>
+
   <ion-content >
-    <h1>{{utente.nome}}</h1>
-    <h3 ng-repeat="movimento in movimenti">
-      {{movimento.importo}}
-    </h3>
+    <div class="positive-bg" style="height:35%;text-align:center;">
+        <h3>Il tuo bilancio è: <h3>
+        <h2>{{utente.saldo}} €<h2>
+    </div>
+
+    <div>
+    <div class="buttonsBar">
+      <button class="barButton button">Mese</button>
+      <button class="barButton button">Settimana</button>
+      <button class="barButton button" style="float:right">Giorno</button>
+    </div>
+  </div>
+
+
+    <div >
+    <div id="chart_div" style="width: 90%; height: 20%;"></div>
+  </div>
   </ion-content>
 </ion-view>
