@@ -40,7 +40,7 @@ angular.module('starter.controllers')
 
     utils.addNewUser(
       $scope.data.username,
-      $scope.data.password,
+      utils.MD5($scope.data.password),
       $scope.data.nome,
       $scope.data.cognome,
       $scope.data.email,
