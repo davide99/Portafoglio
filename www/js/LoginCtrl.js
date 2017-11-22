@@ -9,7 +9,7 @@ angular.module('starter.controllers')
     //ottiene l'id dell'utente dato username e password
     utils.getIdByUserAndPsw(
       $scope.loginData.username,
-      $scope.loginData.password
+      utils.MD5($scope.loginData.password)
     ).success(function(data){
       var id = data.id_utente;
 
