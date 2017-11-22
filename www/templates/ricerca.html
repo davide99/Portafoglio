@@ -1,27 +1,58 @@
 <ion-view view-title="Ricerca" >
 
-  <ion-content class="padding" >
-        
-      <section id="cd-timeline" class="cd-container">
 
-        <div ng-repeat="movimento in entrate" >
 
-          <div class="cd-timeline-block">
+    <ion-content style="padding-top:30px" >
+<style>
 
-            <div class="cd-timeline-icon text-center green" >
-              <i class="{{movimento.descrizione}}" style="font-size:30px" ></i>
-            </div>
+.icon1 {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
 
-            <div class="cd-timeline-content padding green">
-            	<h5 class="marginBottom0 marginTop0">{{movimento.nome}}</h5>
-            	<p class="marginTop5 cd-author">{{movimento.data}}<span class="timelineText" style="float:right">+{{entrata.importo}}</span></p>
+}
+</style>
+  <div class="row">
+    <div class="col">
+      <div class="row" style="border: solid 1px grey; color:grey; margin-bottom:10px" ng-click="setVisibile()">
+          Ricerca per categoria...
+      </div>
+      <div class="row" style="border: solid 1px grey; color:grey">
+          Ricerca per data...
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="row">
+        <button class="button icon-left ion-search button-positive">Ricerca</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+        <div  style="display:{{visibile}}">
+          <div class="row" ng-repeat="sottocategoria in categorie">
+            <div class="col-33" ng-repeat="categoria in sottocategoria" >
+              <button class="button" style="width:95%;margin:5px">
+                <i  class="icon1 {{categoria.descrizione}} " style="font-size:11vw">
+                </i>
+                <br>
+                <span style="font-size:3vw;white-space:nowrap ">
+                  {{categoria.tipo}}
+                </span>
+
+              </button>
 
             </div>
           </div>
         </div>
-      </section>
+
+
+
   </ion-content>
-
-
-
 </ion-view>
