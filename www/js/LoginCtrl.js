@@ -1,6 +1,6 @@
 
 angular.module('starter.controllers')
-.controller('LoginCtrl', function($scope, $http, $ionicPopup, $state, sharedProperties, utils) {
+.controller('LoginCtrl', function($scope, $http, $ionicPopup, $state, $ionicHistory, sharedProperties, utils) {
   $scope.loginData={};
   $scope.loginData.remember=true;
 
@@ -32,7 +32,10 @@ angular.module('starter.controllers')
           localStorage.setItem("password", $scope.loginData.password);
         }
 
-        $state.go('app.profilo', {}, {reload: true});
+        $ionicHistory.clearCache().then(function(){
+          $state.go('app.profilo', {}, {reload: true});
+        });
+
       }
     });
   }
