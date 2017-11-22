@@ -6,6 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers'])
 
+
 .run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -16,8 +17,11 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
     }
     if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
+      if (ionic.Platform.isAndroid()) {
+        StatusBar.backgroundColorByHexString("#387ef5");
+      } else {
+        StatusBar.styleLightContent();
+      }
     }
   });
 })
@@ -58,6 +62,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
+
 
   .state('app', {
     url: '/app',
