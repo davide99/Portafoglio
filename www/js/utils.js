@@ -3,6 +3,17 @@ angular.module('starter')
 
     var urlBase = 'http://portafoglio.altervista.org/';
 
+    this.getIdByUserAndPsw = function (username, password) {
+      var params = {
+        params: {
+          username: username,
+          password: password
+        }
+      };
+
+      return $http.get(urlBase + "Login/getIdByUserAndPsw.php", params);
+    }
+
     this.checkUsername = function (username) {
       var params = {
         params: {
@@ -10,7 +21,7 @@ angular.module('starter')
         }
       };
         return $http.get(urlBase + "Login/usernameTaken.php", params);
-    };
+    }
 
     this.addNewUser = function(username, password, nome, cognome, email, saldo, photo){
       var fd = new FormData();

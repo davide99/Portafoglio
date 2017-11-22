@@ -1,38 +1,31 @@
 
 angular.module('starter.controllers')
-.controller('LoginCtrl', function($scope, $http, $ionicPopup, $state, sharedProperties) {
+.controller('LoginCtrl', function($scope, $http, $ionicPopup, $state, sharedProperties, utils) {
   $scope.loginData={};
   $scope.loginData.remember=true;
 
   //funzione per il login
   $scope.doLogin = function(){
     //ottiene l'id dell'utente dato username e password
-    var link = "http://portafoglio.altervista.org/Login/getIdByUserAndPsw.php";
+    utils.getIdByUserAndPsw(
+      $scope.loginData.username,
+      $scope.loginData.password
+    ).success(function(data){
+      var id = data.id_utente;
 
-    $http.get(link,{
-      params: {
-        username: $scope.loginData.username,
-        password: $scope.loginData.password
-      }
-    }).then(function(response){
-      var id = response.data.id_utente;
-
-      //viene ritornato id=-1 se l'username e la psw non corrispondono a nessuno
       if(id == -1){
-        var alertPopup = $ionicPopup.alert({
+        $ionicPopup.alert({
           title: 'Errore',
           template: 'Username o password errati'
-        });
-
-        alertPopup.then(function(res) {
+        }).then(function(res) {
           $scope.loginData.username = $scope.loginData.password = "";
         });
       } else {
         //Salvo l'id nelle sharedProperties
         sharedProperties.setIdUtente(id);
-        sharedProperties.setNome(response.data.nome);
-        sharedProperties.setCognome(response.data.cognome);
-        sharedProperties.setSaldo(response.data.saldo);
+        sharedProperties.setNome(data.nome);
+        sharedProperties.setCognome(data.cognome);
+        sharedProperties.setSaldo(data.saldo);
 
         if($scope.loginData.remember){
           localStorage.setItem("username", $scope.loginData.username);
@@ -41,9 +34,6 @@ angular.module('starter.controllers')
 
         $state.go('app.profilo', {}, {reload: true});
       }
-
-    }).catch(function(error){
-      console.log(error);
     });
   }
 

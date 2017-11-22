@@ -17,8 +17,6 @@ angular.module('starter.controllers')
     else
       return;
 
-    var link = "http://portafoglio.altervista.org/insert.php";
-
     if($scope.data.password != $scope.data.password1){
       var alertPopup = $ionicPopup.alert({
         title: 'Errore',
