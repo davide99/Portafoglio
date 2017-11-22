@@ -15,20 +15,26 @@
 
 }
 </style>
-  <div class="row">
-    <div class="col">
-      <div class="row" style="border: solid 1px grey; color:grey; margin-bottom:10px" ng-click="setVisibile()">
-          Ricerca per categoria...
+  <div >
+    <div class="row">
+      <div  class="col" style="border: solid 1px grey; color:grey; height:40px; margin-top:10px" ng-click="setVisibile()">
+          {{cat}}
       </div>
-      <div class="row" style="border: solid 1px grey; color:grey">
-          Ricerca per data...
+      <div class="col">
+        <button class="button icon-left ion-close button-positive "style="width:90%" ng-click="azzera()">Azzera</button>
       </div>
+
     </div>
 
-    <div class="col">
-      <div class="row">
-        <button class="button icon-left ion-search button-positive">Ricerca</button>
+    <div class="row">
+      <div class="col" style="border: solid 1px grey; color:grey; height:40px;margin-top:10px">
+          {{data}}
       </div>
+
+      <div class="col">
+        <button class="button icon-left ion-search button-positive" style="width:90%">Ricerca</button>
+      </div>
+
     </div>
   </div>
 
@@ -38,7 +44,7 @@
         <div  style="display:{{visibile}}">
           <div class="row" ng-repeat="sottocategoria in categorie">
             <div class="col-33" ng-repeat="categoria in sottocategoria" >
-              <button class="button" style="width:95%;margin:5px">
+              <button class="button" style="width:95%;margin:5px" ng-click="selezionaCat(categoria.tipo)">
                 <i  class="icon1 {{categoria.descrizione}} " style="font-size:11vw">
                 </i>
                 <br>

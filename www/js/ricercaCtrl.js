@@ -3,6 +3,8 @@ angular.module('starter.controllers')
   var link = "http://portafoglio.altervista.org/select.php";
     $scope.categorie = null;
     $scope.visibile="none";
+    $scope.cat="Ricerca per categoria...";
+    $scope.data="Ricerca per data...";
 
     $http.get(link,{
       params: {
@@ -29,6 +31,16 @@ angular.module('starter.controllers')
       }else{
         $scope.visibile='none';
       }
+    }
+
+
+    $scope.selezionaCat=function(x){
+      $scope.cat=x;
+    }
+
+    $scope.azzera=function(){
+      $scope.cat="Ricerca per categoria...";
+      $scope.data="Ricerca per data...";
     }
 
 
