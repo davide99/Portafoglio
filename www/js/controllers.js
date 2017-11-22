@@ -7,23 +7,23 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+  
   $scope.$ionicSideMenuDelegate = $ionicSideMenuDelegate;
-
   $scope.menu = {};
-  $scope.menu.nome = "Pippo";
-  $scope.menu.cognome = "Pluto";
-  $scope.menu.saldo = "20€";
 
-  $scope.$watch(function () {
-    return $ionicSideMenuDelegate.isOpenLeft();
-  },
-     function (isOpen) {
-      if (isOpen){
-        $scope.menu.nome = sharedProperties.getNome();
-        $scope.menu.cognome = sharedProperties.getCognome();
-        $scope.menu.saldo = sharedProperties.getSaldo();
-        $scope.menu.id = sharedProperties.getIdUtente();
-      }
-  });
+  $scope.getNome = function() {
+    return sharedProperties.getNome();
+  }
 
+  $scope.getCognome = function() {
+    return sharedProperties.getCognome();
+  }
+
+  $scope.getSaldo = function() {
+    return sharedProperties.getSaldo();
+  }
+
+  $scope.getIdUtente = function() {
+    return sharedProperties.getIdUtente();
+  }
 });

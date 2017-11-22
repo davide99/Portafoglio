@@ -1,0 +1,27 @@
+<ion-view view-title="Ricerca" >
+
+  <ion-content class="padding" >
+        
+      <section id="cd-timeline" class="cd-container">
+
+        <div ng-repeat="movimento in entrate" >
+
+          <div class="cd-timeline-block">
+
+            <div class="cd-timeline-icon text-center green" >
+              <i class="{{movimento.descrizione}}" style="font-size:30px" ></i>
+            </div>
+
+            <div class="cd-timeline-content padding green">
+            	<h5 class="marginBottom0 marginTop0">{{movimento.nome}}</h5>
+            	<p class="marginTop5 cd-author">{{movimento.data}}<span class="timelineText" style="float:right">+{{entrata.importo}}</span></p>
+
+            </div>
+          </div>
+        </div>
+      </section>
+  </ion-content>
+
+
+
+</ion-view>
