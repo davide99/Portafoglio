@@ -1,6 +1,6 @@
 
 angular.module('starter.controllers')
-.controller('UsciteCtrl', function($scope, sharedProperties) {
+.controller('UsciteCtrl', function($scope, sharedProperties, $ionicPopup) {
   //funzione
   $scope.inserisci = function(){
     $scope.id_utente=sharedProperties.getIdUtente();
@@ -32,4 +32,25 @@ angular.module('starter.controllers')
       })
         })
       }
+//alert
+  $scope.showPopup = function() {
+    if($scope.nome == "" || $scope.importo == "" ||
+    $scope.id_tipo == ""){
+    $ionicPopup.alert({
+      title: 'Errore',
+      template: 'Compilare tutti i campi !'
+    }).then(function(res) {
+      console.log('controllo campi');
+    });
+  }
+  else{
+    $ionicPopup.alert({
+      title: 'Successo',
+      template: 'Uscita inserita correttamente !'
+    }).then(function(res) {
+      console.log('controllo campi');
+    });
+  }
+};
+
   });
