@@ -2,7 +2,6 @@
 angular.module('starter.controllers')
 .controller('LoginCtrl', function($scope, $http, $ionicPopup, $state, sharedProperties) {
   $scope.loginData={};
-  //di default è impostato per ricordare le credenziali
   $scope.loginData.remember=true;
 
   //funzione per il login
