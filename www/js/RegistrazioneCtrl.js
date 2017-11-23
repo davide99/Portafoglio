@@ -44,7 +44,6 @@ angular.module('starter.controllers')
       $scope.data.nome,
       $scope.data.cognome,
       $scope.data.email,
-      $scope.data.saldo,
       document.getElementById('photo').files[0]
     ).success(function(data){
 
