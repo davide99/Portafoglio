@@ -2,9 +2,6 @@
 angular.module('starter.controllers')
 .controller('ProfiloCtrl', function($scope, $http, sharedProperties) {
   $scope.tabAttivo = 1;
-
-  $scope.$root.showMenuIcon = true;
-
   $scope.id_utente = sharedProperties.getIdUtente();
   var entrateTot = 0;
   var usciteTot = 0;
@@ -22,7 +19,11 @@ angular.module('starter.controllers')
   d.setHours(0,0,0,0);
   var month = d.getMonth()+1;
 
+<<<<<<< HEAD
   // console.log(sharedProperties.getIdUtente());
+=======
+  console.log(">> " + sharedProperties.getIdUtente());
+>>>>>>> 6d23e02c15aad7096c9b56f3d38f5b919f52d8b2
 
 
   function getUser(){
@@ -195,7 +196,7 @@ angular.module('starter.controllers')
   //*************************//
   function creaVettoreGiornoMese(giorno){
 
-    var movimenti = $scope.movimenti
+    var movimenti = $scope.movimenti;
     var entrate = 0;
     var uscite = 0;
 
