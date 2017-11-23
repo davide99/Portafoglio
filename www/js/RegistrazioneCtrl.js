@@ -44,6 +44,7 @@ angular.module('starter.controllers')
       $scope.data.nome,
       $scope.data.cognome,
       $scope.data.email,
+      $scope.data.saldo,
       document.getElementById('photo').files[0]
     ).success(function(data){
 
@@ -54,7 +55,7 @@ angular.module('starter.controllers')
       sharedProperties.setCognome(data.cognome);
       sharedProperties.setSaldo(data.saldo);
       localStorage.setItem("username", data.username);
-      localStorage.setItem("password", data.password);
+      localStorage.setItem("password", $scope.data.password);
 
       $state.go('app.profilo', {}, {reload: true});
     });
