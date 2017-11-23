@@ -1,9 +1,10 @@
 
 angular.module('starter.controllers')
 .controller('EntrateCtrl', function($scope, sharedProperties, $http) {
+  $scope.id_utente=sharedProperties.getIdUtente();
   //Funzione
   $scope.inserisci = function(){
-    $scope.id_utente=sharedProperties.getIdUtente();
+
     var link1 = "http://portafoglio.altervista.org/update.php";
     var link2= "http://portafoglio.altervista.org/select.php";
     $scope.entrate=null;
