@@ -2,6 +2,9 @@
 angular.module('starter.controllers')
 .controller('ProfiloCtrl', function($scope, $http, sharedProperties) {
   $scope.tabAttivo = 1;
+
+  $scope.$root.showMenuIcon = true;
+
   $scope.id_utente = sharedProperties.getIdUtente();
   var entrateTot = 0;
   var usciteTot = 0;
@@ -19,11 +22,7 @@ angular.module('starter.controllers')
   d.setHours(0,0,0,0);
   var month = d.getMonth()+1;
 
-<<<<<<< HEAD
   // console.log(sharedProperties.getIdUtente());
-=======
-  console.log(">> " + sharedProperties.getIdUtente());
->>>>>>> 6d23e02c15aad7096c9b56f3d38f5b919f52d8b2
 
 
   function getUser(){
@@ -127,9 +126,19 @@ angular.module('starter.controllers')
         $scope.datiMovimenti.push(entryMovimento);
       }
 
-      // for (var i = 0; i < categorie.length; i++) {
-      //   console.log(categorie[i][0]);
-      // }
+      // console.log(categorie);
+      var tempVett = [["Categoria",0]];
+      for (var i = 0; i < categorie.length; i++) {
+        if (tempVett[i].indexOf(categorie[i][0]) != -1) {
+          tempVett.push(categorie[i]);
+        }else{
+          var index = tempVett[i].indexOf(categorie[i][0]);
+          tempVett[index][1] += categorie[i][1];
+        }
+        // console.log(categorie[i][0], categorie[i][1]);
+      }
+
+      console.log(tempVett);
 
       // var indexes = [];
       // for (var i = 1; i < categorie.length; i++) {
@@ -196,7 +205,7 @@ angular.module('starter.controllers')
   //*************************//
   function creaVettoreGiornoMese(giorno){
 
-    var movimenti = $scope.movimenti;
+    var movimenti = $scope.movimenti
     var entrate = 0;
     var uscite = 0;
 
@@ -207,27 +216,16 @@ angular.module('starter.controllers')
         }else{
           uscite += parseFloat(movimenti[i].importo);
 
-          // var vettSoloCat = [];
-          // for (var i = 0; i < categorie.length; i++) {
-          //   vettSoloCat.push(categorie[i][0]);
-          // }
-          //
-          // console.log(vettSoloCat);
-
-          // console.log(categorie.length);
-          // console.log(categorie[0].indexOf(movimenti[i].tipo));
-
-          // for (var j = 0; j < vettSoloCat.length; j++) {
-          //   console.log(j);
-          //   console.log(movimenti[i].tipo, categorie[j]);
-          //   if (vettSoloCat.indexOf(movimenti[i].tipo) == -1) {
-          //     categorie.push([movimenti[i].tipo,-parseFloat(movimenti[i].importo)]);
-          //     j++;
-          //     break;
-          //   }else{
-          //     console.log(movimenti[i].tipo);
-          //   }
-          // }
+          for (var j = 0; j < categorie.length; j++) {
+            // console.log(j);
+            // console.log(movimenti[i].tipo, categorie[j]);
+            if (categorie[j].indexOf(movimenti[i].tipo) == -1) {
+              categorie.push([movimenti[i].tipo,-parseFloat(movimenti[i].importo)]);
+              break;
+            }else{
+              console.log(movimenti[i].tipo);
+            }
+          }
 
 
           // categorie.push([movimenti[i].tipo,-parseFloat((movimenti[i].importo))]);
