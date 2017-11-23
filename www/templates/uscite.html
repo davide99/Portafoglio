@@ -80,7 +80,7 @@
 
     <label class="item item-input">
       <i class="icon ion-navicon-round placeholder-icon"></i>
-      <select ng-model="id_tipo" style="margin: 5.2px">
+      <select ng-model="id_tipo" style="margin: 5.2px" style="border: 5px">
         <option ng-repeat="uscita in uscite | orderBy: 'tipo'" value="{{uscita.id_tipo}}" >{{uscita.tipo}}</option>
       </select>
     </label>
