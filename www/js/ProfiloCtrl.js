@@ -1,6 +1,7 @@
 
 angular.module('starter.controllers')
-.controller('ProfiloCtrl', function($scope, $http, sharedProperties) {
+.controller('ProfiloCtrl', function($scope, $http, sharedProperties,$state) {
+
   $scope.tabAttivo = 1;
 
   $scope.$root.showMenuIcon = true;
