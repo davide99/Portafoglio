@@ -125,54 +125,6 @@ angular.module('starter.controllers')
         var entryMovimento = creaVettoreGiornoMese(i);
         $scope.datiMovimenti.push(entryMovimento);
       }
-
-      // console.log(categorie);
-      var tempVett = [["Categoria",0]];
-      for (var i = 0; i < categorie.length; i++) {
-        if (tempVett[i].indexOf(categorie[i][0]) != -1) {
-          tempVett.push(categorie[i]);
-        }else{
-          var index = tempVett[i].indexOf(categorie[i][0]);
-          tempVett[index][1] += categorie[i][1];
-        }
-        // console.log(categorie[i][0], categorie[i][1]);
-      }
-
-      console.log(tempVett);
-
-      // var indexes = [];
-      // for (var i = 1; i < categorie.length; i++) {
-      //   for (var j = 1; j < categorie.length; j++) {
-      //     if (categorie[i].indexOf(categorie[j][0]) != -1 && i!=j) {
-      //       indexes.push([i,categorie[i][0],categorie[i][1]]);
-      //     }
-      //   }
-      //
-      // }
-      // // console.log(indexes.length);
-      //
-      // for (var i = 0; i < indexes.length; i++) {
-      //   //SPLICE(index,1)
-      //   // console.log(indexes[i]);
-      //   var newIndex;
-      //   for (var j = 0; j < indexes.length; j++) {
-      //     if (indexes[i][0] == indexes[j][0]) {
-      //       newIndex = indexes[j][0];
-      //       console.log(newIndex);
-      //       // console.log(indexes[j]);
-      //     }
-      //   }
-      //
-      //
-      //
-      // }
-
-
-
-
-
-      // console.log($scope.datiCategorie);
-
     }else if(tab==2){
       for (var i = 0; i < 7; i++) {
         var entryMovimento = creaVettoreGiornoSettimana(i);
@@ -187,6 +139,20 @@ angular.module('starter.controllers')
       }
 
     }
+
+    //SANTU STACKOVERFLOW
+    var sum = {},result;
+    for (var i = 0,c; c=categorie[i]; ++i) {
+      if (undefined === sum[c[0]]) {
+        sum[c[0]] = c;
+      }else{
+        sum[c[0]][1] += c[1];
+      }
+    }
+    result = Object.keys(sum).map(function(val) { return sum[val]});
+    // console.log(result);
+
+    $scope.datiCategorie = result;
 
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawMovimentiChart);
@@ -215,27 +181,7 @@ angular.module('starter.controllers')
           entrate += parseFloat(movimenti[i].importo);
         }else{
           uscite += parseFloat(movimenti[i].importo);
-
-          for (var j = 0; j < categorie.length; j++) {
-            // console.log(j);
-            // console.log(movimenti[i].tipo, categorie[j]);
-            if (categorie[j].indexOf(movimenti[i].tipo) == -1) {
-              categorie.push([movimenti[i].tipo,-parseFloat(movimenti[i].importo)]);
-              break;
-            }else{
-              console.log(movimenti[i].tipo);
-            }
-          }
-
-
-          // categorie.push([movimenti[i].tipo,-parseFloat((movimenti[i].importo))]);
-          // for (var j = index; j > 1; j--) {
-          //   if (categorie[j].indexOf(movimenti[i].tipo) != -1) {
-          //     console.log();
-          //   }
-          // }
-
-
+          categorie.push([movimenti[i].tipo,-parseFloat(movimenti[i].importo)]);
         }
       }
     }
@@ -245,7 +191,6 @@ angular.module('starter.controllers')
     entrateTot += entrate;
     usciteTot += uscite;
 
-    $scope.datiCategorie = categorie;
 
     $scope.statisticheMovimenti = [{nome:"Entrate",importo:entrateTot},{nome:"Uscite",importo:usciteTot},{nome:"Bilancio",importo:entrateTot+usciteTot}];
 
@@ -284,6 +229,7 @@ angular.module('starter.controllers')
             entrate += parseFloat(movimenti[i].importo);
           }else{
             uscite += parseFloat(movimenti[i].importo);
+            categorie.push([movimenti[i].tipo,-parseFloat(movimenti[i].importo)]);
           }
         }
       }
@@ -321,6 +267,7 @@ angular.module('starter.controllers')
             entrate += parseFloat(movimenti[i].importo);
           }else{
             uscite += parseFloat(movimenti[i].importo);
+            categorie.push([movimenti[i].tipo,-parseFloat(movimenti[i].importo)]);
           }
         }
       }
@@ -354,8 +301,3 @@ angular.module('starter.controllers')
   }
 
 });
-
-Date.prototype.getWeek = function() {
-  var jan4th = new Date(this.getFullYear(),0,4);
-  return Math.ceil((((this - jan4th) / 86400000) + jan4th.getDay()+1)/7);
-}
