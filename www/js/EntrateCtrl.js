@@ -29,4 +29,20 @@ angular.module('starter.controllers')
 
         })
     }
+    //ritorna id_Tipo
+    $scope.ritornaID=function(){
+      var link="http://portafoglio.altervista.org/select.php";
+      $http.get(link,{
+        params:{
+          tabella:'tipi'
+        }
+      }).then(function(response){
+        $scope.entrate=response.data.tipi;
+        console.log('tipi', $scope.entrate);
+      }).catch(function(error){
+        console.log(error);
+      })
+    }
+
+    $scope.ritornaID();
   });
