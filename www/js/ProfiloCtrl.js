@@ -1,10 +1,11 @@
 
 angular.module('starter.controllers')
-.controller('ProfiloCtrl', function($scope, $http, sharedProperties,$state) {
-
+.controller('ProfiloCtrl', function($scope, $http, sharedProperties) {
+  $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    viewData.enableBack = false;
+  });
+  
   $scope.tabAttivo = 1;
-
-  $scope.$root.showMenuIcon = true;
 
   $scope.id_utente = sharedProperties.getIdUtente();
   var entrateTot = 0;

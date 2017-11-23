@@ -32,9 +32,7 @@ angular.module('starter.controllers')
           localStorage.setItem("password", $scope.loginData.password);
         }
 
-        $ionicHistory.clearCache().then(function(){
-          $state.go('app.profilo', {}, {reload: true});
-        });
+        $state.go('app.profilo', {}, {reload: true});
 
       }
     });
