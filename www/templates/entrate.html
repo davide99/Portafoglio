@@ -34,8 +34,8 @@
       </label>
 
       <label class="item item-input">
-        <i class="icon ion-pound placeholder-icon"></i>
-        <select ng-model="id_tipo">
+        <i class="icon ion-navicon-round placeholder-icon"></i>
+        <select ng-model="id_tipo" style="margin: 5.2px">
           <option ng-repeat="entrata in entrate | orderBy: 'tipo'" value="{{entrata.id_tipo}}">{{entrata.tipo}}</option>
         </select>
       </label>

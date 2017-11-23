@@ -79,9 +79,9 @@
     </label>
 
     <label class="item item-input">
-      <i class="icon ion-pound placeholder-icon"></i>
-      <select ng-model="id_tipo">
-        <option ng-repeat="uscita in uscite | orderBy: 'tipo'" value="{{uscita.id_tipo}}">{{uscita.tipo}}</option>
+      <i class="icon ion-navicon-round placeholder-icon"></i>
+      <select ng-model="id_tipo" style="margin: 5.2px">
+        <option ng-repeat="uscita in uscite | orderBy: 'tipo'" value="{{uscita.id_tipo}}" >{{uscita.tipo}}</option>
       </select>
     </label>
 
