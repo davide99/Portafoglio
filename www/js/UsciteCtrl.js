@@ -44,6 +44,7 @@ angular.module('starter.controllers')
       console.log('controllo campi');
     });
   }
+  /*
   else{
     $ionicPopup.alert({
       title: 'Successo',
@@ -52,6 +53,7 @@ angular.module('starter.controllers')
       console.log('controllo campi');
     });
   }
+*/
 };
 //ritorna id_Tipo
 $scope.ritornaID=function(){
