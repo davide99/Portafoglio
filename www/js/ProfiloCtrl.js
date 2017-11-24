@@ -169,16 +169,16 @@ angular.module('starter.controllers')
 
     $scope.datiCategorie = result;
 
-<<<<<<< HEAD
+
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawMovimentiChart);
   }
 
    $scope.setUpGraficoCategorie = function(){
-=======
+
 
 if ($scope.utente != null) {
->>>>>>> 6fd876f4b01895005d19eb26f190c185b202797f
+
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawCategorieChart);
   }
