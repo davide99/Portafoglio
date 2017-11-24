@@ -4,7 +4,7 @@ angular.module('starter.controllers')
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = false;
   });
-  
+
   $scope.tabAttivo = 1;
 
   $scope.id_utente = sharedProperties.getIdUtente();
@@ -111,13 +111,13 @@ angular.module('starter.controllers')
     usciteTot = 0;
     categorie = [['Categoria','Importo']];
     index = 1;
-    setUpGraficoMovimenti();
-    setUpGraficoCategorie();
+    $scope.setUpGraficoMovimenti();
+    $scope.setUpGraficoCategorie();
 
 
   }
 
-  function setUpGraficoMovimenti() {
+  $scope.setUpGraficoMovimenti = function () {
     var tab = $scope.tabAttivo;
     $scope.datiMovimenti = [['Giorno', 'Entrate', 'Uscite']];
     $scope.datiCategorie = [['Categoria', 'Importo']];
@@ -160,8 +160,7 @@ angular.module('starter.controllers')
     google.charts.setOnLoadCallback(drawMovimentiChart);
   }
 
-  function setUpGraficoCategorie(){
-
+   $scope.setUpGraficoCategorie = function(){
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawCategorieChart);
 
