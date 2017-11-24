@@ -27,12 +27,12 @@
     </div>
 
     <div class="row">
-      <label style="border: solid 1px grey; color:grey; height:40px; margin-top:10px">
-        <input style="-webkit-datetime-edit-year-field:none" type="datetime-local" placeholder="Data" ng-model="data" />
-      </label>
+      <div class="col" style="border: solid 1px grey; color:grey; height:40px;margin-top:10px" ng-click="openDatePicker()">
+          {{data | date: 'dd MMM yyyy'}}
+      </div>
 
       <div class="col">
-        <button class="button icon-left ion-search button-positive" style="width:90%" ng-click="carica()">Ricerca</button>
+        <button class="button icon-left ion-search button-positive" style="width:90%" ng-click="caricaPerData()">Ricerca</button>
       </div>
 
     </div>
@@ -79,12 +79,12 @@
 
               <div ng-if="movimento.importo<0" class="cd-timeline-content padding red">
                 <h5 class="marginBottom0 marginTop0">{{movimento.nome}}</h5>
-                <p class="marginTop5 cd-author">{{movimento.data}}<span class="timelineText" style="float:right">{{movimento.importo}}</span></p>
+                <p class="marginTop5 cd-author">{{movimento.data}}<span class="timelineText" style="float:right">{{movimento.importo | currency}}</span></p>
 
               </div>
               <div ng-if="movimento.importo>0" class="cd-timeline-content padding green">
                 <h5 class="marginBottom0 marginTop0">{{movimento.nome}}</h5>
-                <p class="marginTop5 cd-author">{{movimento.data}}<span class="timelineText" style="float:right">{{movimento.importo}}</span></p>
+                <p class="marginTop5 cd-author">{{movimento.data}}<span class="timelineText" style="float:right">{{movimento.importo | currency}}</span></p>
 
               </div>
 
