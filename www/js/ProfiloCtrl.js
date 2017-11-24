@@ -116,13 +116,13 @@ angular.module('starter.controllers')
     usciteTot = 0;
     categorie = [['Categoria','Importo']];
     index = 1;
-    $scope.setUpGraficoMovimenti();
-    $scope.setUpGraficoCategorie();
+    setUpGraficoMovimenti();
+    setUpGraficoCategorie();
 
 
   }
 
-  $scope.setUpGraficoMovimenti = function () {
+  function setUpGraficoMovimenti() {
     var tab = $scope.tabAttivo;
     $scope.datiMovimenti = [['Giorno', 'Entrate', 'Uscite']];
     $scope.datiCategorie = [['Categoria', 'Importo']];
@@ -170,15 +170,7 @@ angular.module('starter.controllers')
     $scope.datiCategorie = result;
 
 
-    // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(drawMovimentiChart);
-  }
-
-   $scope.setUpGraficoCategorie = function(){
-
-
 if ($scope.utente != null) {
-
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawCategorieChart);
   }
