@@ -1,14 +1,20 @@
 
 angular.module('starter.controllers')
 .controller('ProfiloCtrl', function($scope, $http, sharedProperties) {
-  $scope.tabAttivo = 1;
+  $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    viewData.enableBack = false;
+  });
 
-  $scope.$root.showMenuIcon = true;
+  $scope.tabAttivo = 1;
 
   $scope.id_utente = sharedProperties.getIdUtente();
   var entrateTot = 0;
   var usciteTot = 0;
-  $scope.statistiche = [];
+  var categorie = [];
+  $scope.statisticheMovimenti = [];
+
+  // Load the Visualization API and the corechart package.
+  google.charts.load('current', {'packages':['corechart']});
 
   // console.log(sharedProperties.getIdUtente());
 
@@ -17,23 +23,28 @@ angular.module('starter.controllers')
   var d = new Date();
   d.setHours(0,0,0,0);
   var month = d.getMonth()+1;
-  getMovimenti(month,"","");
+  var anno = d.getYear();
 
-  console.log(sharedProperties.getIdUtente());
+  // console.log(sharedProperties.getIdUtente());
 
 
   function getUser(){
+
     var link = "http://portafoglio.altervista.org/getUserById.php";
     $scope.utente = null;
 
-    console.log($scope.id_utente);
+    // console.log($scope.id_utente);
 
     $http.get(link,{
       params: {
         id_utente: $scope.id_utente
       }
-    }).then(function(response){
-      $scope.utente = response.data.utenti[0];
+    }).success(function(data){
+      if (data.utenti == undefined){
+        return
+      }
+      $scope.utente = data.utenti[0];
+      getMovimenti(month,"","");
       // console.log($scope.utente);
     }).catch(function(error){
       console.log(error);
@@ -47,86 +58,129 @@ angular.module('starter.controllers')
     $http.get(link,{
       params: {
         id_utente: $scope.id_utente,
+        anno: $scope.anno,
         mese:mese,
-        // settimana:settimana,
         giorno:giorno
       }
-    }).then(function(response){
-      $scope.movimenti = response.data.movimenti;
+    }).success(function(data){
+      $scope.movimenti = data.movimenti;
       $scope.selezionaPeriodo($scope.tabAttivo);
-      console.log($scope.movimenti);
+      // console.log($scope.movimenti);
     }).catch(function(error){
       console.log(error);
     });
   }
 
-
-  // Load the Visualization API and the corechart package.
-  google.charts.load('current', {'packages':['corechart']});
-
-  function drawChart() {
+  function drawMovimentiChart() {
     // Create the data table.
     var data = new google.visualization.arrayToDataTable($scope.datiMovimenti);
 
     // Set chart options
     var options = {
-      curveType: 'function',
       animation: {duration: '500',startup:true},
-      chartArea:{left:50,width:'100%'},
+      chartArea:{left:80,width:'100%'},
       width: '100%',
       legend: { position: 'bottom' },
       vAxis: {format: 'currency'}
     };
 
-
     // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+    var chart = new google.visualization.AreaChart(document.getElementById('movimenti_chart_div'));
     chart.draw(data, options);
   }
 
+  function drawCategorieChart() {
+    // Create the data table.
+    var data = new google.visualization.arrayToDataTable($scope.datiCategorie);
+
+    // Set chart options
+    var options = {
+      animation: {duration: '500',startup:true},
+      chartArea:{width:'100%'},
+      width: '110%',
+      pieHole: 0.4,
+    };
+
+    // Instantiate and draw our chart, passing in some options.
+    var chart = new google.visualization.PieChart(document.getElementById('categorie_chart_div'));
+    chart.draw(data, options);
+  }
+
+
+  var index = 0;
 
   $scope.selezionaPeriodo=function(tab){
 
     $scope.tabAttivo = tab;
     entrateTot = 0;
     usciteTot = 0;
-    setUpGrafico();
-
+    categorie = [['Categoria','Importo']];
+    index = 1;
+    setUpGraficoMovimenti();
+    setUpGraficoCategorie();
 
 
   }
 
-  function setUpGrafico() {
+  function setUpGraficoMovimenti() {
     var tab = $scope.tabAttivo;
     $scope.datiMovimenti = [['Giorno', 'Entrate', 'Uscite']];
+    $scope.datiCategorie = [['Categoria', 'Importo']];
 
     if (tab==1) {
       for (var i = 1; i < 32; i++) {
-        var entry = creaVettoreGiornoMese(i);
-        $scope.datiMovimenti.push(entry);
+        var entryMovimento = creaVettoreGiornoMese(i);
+        $scope.datiMovimenti.push(entryMovimento);
       }
-
     }else if(tab==2){
       for (var i = 0; i < 7; i++) {
-        var entry = creaVettoreGiornoSettimana(i);
-        $scope.datiMovimenti.push(entry);
+        var entryMovimento = creaVettoreGiornoSettimana(i);
+        $scope.datiMovimenti.push(entryMovimento);
       }
 
     }else{
       $scope.datiMovimenti = [['Ora', 'Entrate', 'Uscite']];
       for (var i = 0; i < 25; i++) {
-        var entry = creaVettoreGiorno(i);
-        $scope.datiMovimenti.push(entry);
+        var entryMovimento = creaVettoreGiorno(i);
+        $scope.datiMovimenti.push(entryMovimento);
       }
 
     }
 
     // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(drawChart);
+    if ($scope.utente != null) {
+    google.charts.setOnLoadCallback(drawMovimentiChart);
+  }
   }
 
-  // $scope.selezionaPeriodo(1);
+  function setUpGraficoCategorie(){
 
+    //SANTU STACKOVERFLOW
+    var sum = {},result;
+    for (var i = 0,c; c=categorie[i]; ++i) {
+      if (undefined === sum[c[0]]) {
+        sum[c[0]] = c;
+      }else{
+        sum[c[0]][1] += c[1];
+      }
+    }
+    result = Object.keys(sum).map(function(val) { return sum[val]});
+    // console.log(result);
+
+    $scope.datiCategorie = result;
+
+
+if ($scope.utente != null) {
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawCategorieChart);
+  }
+
+  }
+
+
+  //*************************//
+  //FUNZIONI PER CREARE LE entryMovimento PER IL GRAFICO
+  //*************************//
   function creaVettoreGiornoMese(giorno){
 
     var movimenti = $scope.movimenti
@@ -139,14 +193,18 @@ angular.module('starter.controllers')
           entrate += parseFloat(movimenti[i].importo);
         }else{
           uscite += parseFloat(movimenti[i].importo);
+          categorie.push([movimenti[i].tipo,-parseFloat(movimenti[i].importo)]);
         }
       }
     }
 
+
+
     entrateTot += entrate;
     usciteTot += uscite;
 
-    $scope.statistiche = [{nome:"Entrate",importo:entrateTot},{nome:"Uscite",importo:usciteTot},{nome:"Bilancio",importo:entrateTot+usciteTot}];
+
+    $scope.statisticheMovimenti = [{nome:"Entrate",importo:entrateTot},{nome:"Uscite",importo:usciteTot},{nome:"Bilancio",importo:entrateTot+usciteTot}];
 
     // console.log(String(giorno),entrate,uscite);
 
@@ -183,6 +241,7 @@ angular.module('starter.controllers')
             entrate += parseFloat(movimenti[i].importo);
           }else{
             uscite += parseFloat(movimenti[i].importo);
+            categorie.push([movimenti[i].tipo,-parseFloat(movimenti[i].importo)]);
           }
         }
       }
@@ -191,7 +250,7 @@ angular.module('starter.controllers')
     entrateTot += entrate;
     usciteTot += uscite;
 
-    $scope.statistiche = [{nome:"Entrate",importo:entrateTot},{nome:"Uscite",importo:usciteTot},{nome:"Bilancio",importo:entrateTot+usciteTot}];
+    $scope.statisticheMovimenti = [{nome:"Entrate",importo:entrateTot},{nome:"Uscite",importo:usciteTot},{nome:"Bilancio",importo:entrateTot+usciteTot}];
 
 
     // console.log(String(giorni[giorno]),entrate,uscite);
@@ -220,6 +279,7 @@ angular.module('starter.controllers')
             entrate += parseFloat(movimenti[i].importo);
           }else{
             uscite += parseFloat(movimenti[i].importo);
+            categorie.push([movimenti[i].tipo,-parseFloat(movimenti[i].importo)]);
           }
         }
       }
@@ -230,28 +290,26 @@ angular.module('starter.controllers')
 
     // console.log(String(ora),entrate,uscite);
 
-    $scope.statistiche = [{nome:"Entrate",importo:entrateTot},{nome:"Uscite",importo:usciteTot},{nome:"Bilancio",importo:entrateTot+usciteTot}];
+    $scope.statisticheMovimenti = [{nome:"Entrate",importo:entrateTot},{nome:"Uscite",importo:usciteTot},{nome:"Bilancio",importo:entrateTot+usciteTot}];
 
 
     return [String(ora),entrate,uscite];
   }
 
+  //Dalla data ottengo il giorno es. 2017-11-22 10:39:00 mi ritorna 22
   function getDayOfMonth(data){
     return data.split("-")[2].substring(0,2);
   }
 
+  //Dalla data ottengo il giorno della settimana es. 2017-11-22 10:39:00 mi ritorna Wed
   function getDayOfWeek(date) {
     var dayOfWeek = new Date(date).getDay();
     return isNaN(dayOfWeek) ? null : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][dayOfWeek];
   }
 
+  //Dalla data ottengo l'ora del giorno es. 2017-11-22 10:39:00 mi ritorna 10
   function getHourOfDay(data){
     return data.split("-")[2].substring(2,5);
   }
 
 });
-
-Date.prototype.getWeek = function() {
-  var jan4th = new Date(this.getFullYear(),0,4);
-  return Math.ceil((((this - jan4th) / 86400000) + jan4th.getDay()+1)/7);
-}
