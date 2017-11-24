@@ -4,7 +4,7 @@ angular.module('starter.controllers')
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = false;
   });
-
+//
   $scope.tabAttivo = 1;
 
   $scope.id_utente = sharedProperties.getIdUtente();
