@@ -23,11 +23,13 @@ angular.module('starter.controllers')
   var d = new Date();
   d.setHours(0,0,0,0);
   var month = d.getMonth()+1;
+  var anno = d.getYear();
 
   // console.log(sharedProperties.getIdUtente());
 
 
   function getUser(){
+
     var link = "http://portafoglio.altervista.org/getUserById.php";
     $scope.utente = null;
 
@@ -38,6 +40,9 @@ angular.module('starter.controllers')
         id_utente: $scope.id_utente
       }
     }).success(function(data){
+      if (data.utenti == undefined){
+        return
+      }
       $scope.utente = data.utenti[0];
       getMovimenti(month,"","");
       // console.log($scope.utente);
@@ -53,14 +58,14 @@ angular.module('starter.controllers')
     $http.get(link,{
       params: {
         id_utente: $scope.id_utente,
+        anno: $scope.anno,
         mese:mese,
-        // settimana:settimana,
         giorno:giorno
       }
     }).success(function(data){
       $scope.movimenti = data.movimenti;
       $scope.selezionaPeriodo($scope.tabAttivo);
-      console.log($scope.movimenti);
+      // console.log($scope.movimenti);
     }).catch(function(error){
       console.log(error);
     });
@@ -73,7 +78,7 @@ angular.module('starter.controllers')
     // Set chart options
     var options = {
       animation: {duration: '500',startup:true},
-      chartArea:{left:50,width:'100%'},
+      chartArea:{left:80,width:'100%'},
       width: '100%',
       legend: { position: 'bottom' },
       vAxis: {format: 'currency'}
@@ -142,6 +147,14 @@ angular.module('starter.controllers')
 
     }
 
+    // Set a callback to run when the Google Visualization API is loaded.
+    if ($scope.utente != null) {
+    google.charts.setOnLoadCallback(drawMovimentiChart);
+  }
+  }
+
+  function setUpGraficoCategorie(){
+
     //SANTU STACKOVERFLOW
     var sum = {},result;
     for (var i = 0,c; c=categorie[i]; ++i) {
@@ -156,13 +169,19 @@ angular.module('starter.controllers')
 
     $scope.datiCategorie = result;
 
+<<<<<<< HEAD
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawMovimentiChart);
   }
 
    $scope.setUpGraficoCategorie = function(){
+=======
+
+if ($scope.utente != null) {
+>>>>>>> 6fd876f4b01895005d19eb26f190c185b202797f
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawCategorieChart);
+  }
 
   }
 
