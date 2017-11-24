@@ -21,6 +21,12 @@
                 ng-class="$ionicSideMenuDelegate.isOpen() ? 'ion-android-arrow-back' : 'ion-navicon'">
         </button>
       </ion-nav-buttons>
+
+      <ion-nav-buttons side="primary">
+              <button class="button" ng-click="logout()">
+                  Logout
+              </button>
+          </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
@@ -38,7 +44,7 @@
             </div>
             <div class="col" style="margin: auto;">
               <b style="text-transform: capitalize;">{{getNome()}} {{getCognome()}}</b><br>
-              <b>Saldo: </b>{{getSaldo()}}&euro;
+              <b>Saldo: </b>{{getSaldo() | currency}}
             </div>
             <div class="col" style="margin: auto;">
               <i class="arrow"></i>

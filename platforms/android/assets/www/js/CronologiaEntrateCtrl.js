@@ -1,12 +1,13 @@
 angular.module('starter.controllers')
-.controller('CronologiaEntrateCtrl', function($scope, $http) {
-
+.controller('CronologiaEntrateCtrl', function($scope, $http, sharedProperties) {
+  $scope.id_utente = sharedProperties.getIdUtente();
 var link = "http://portafoglio.altervista.org/select.php";
   $scope.entrate = null;
 
   $http.get(link,{
     params: {
-      tabella: 'entrate'
+      tabella: 'entrate',
+      id_utente: $scope.id_utente
     }
   }).then(function(response){
     $scope.entrate = response.data.entrate;
@@ -40,7 +41,7 @@ function getLongData(){
       var ora=o[i];
 
       $scope.entrate[i].data=data+", "+ora;
-      
+
     }
 
   }).catch(function(error){

@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers','ionic-datepicker'])
 
 
 .run(function($ionicPlatform, $rootScope) {
@@ -17,11 +17,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
     }
     if (window.StatusBar) {
-      if (ionic.Platform.isAndroid()) {
-        StatusBar.backgroundColorByHexString("#387ef5");
-      } else {
-        StatusBar.styleLightContent();
-      }
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
     }
   });
 })
