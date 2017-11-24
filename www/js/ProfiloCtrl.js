@@ -147,6 +147,14 @@ angular.module('starter.controllers')
 
     }
 
+    // Set a callback to run when the Google Visualization API is loaded.
+    if ($scope.utente != null) {
+    google.charts.setOnLoadCallback(drawMovimentiChart);
+  }
+  }
+
+  function setUpGraficoCategorie(){
+
     //SANTU STACKOVERFLOW
     var sum = {},result;
     for (var i = 0,c; c=categorie[i]; ++i) {
@@ -161,14 +169,11 @@ angular.module('starter.controllers')
 
     $scope.datiCategorie = result;
 
-    // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(drawMovimentiChart);
-  }
 
-  function setUpGraficoCategorie(){
-
+if ($scope.utente != null) {
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawCategorieChart);
+  }
 
   }
 
