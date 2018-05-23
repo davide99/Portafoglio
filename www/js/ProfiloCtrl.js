@@ -6,6 +6,7 @@ angular.module('starter.controllers')
   });
 //
   $scope.tabAttivo = 1;
+  $scope.movimentiPresenti = false
 
   $scope.id_utente = sharedProperties.getIdUtente();
   var entrateTot = 0;
@@ -18,12 +19,12 @@ angular.module('starter.controllers')
 
   // console.log(sharedProperties.getIdUtente());
 
-
-  getUser();
   var d = new Date();
   d.setHours(0,0,0,0);
   var month = d.getMonth()+1;
-  var anno = d.getYear();
+  var anno = d.getFullYear();
+  getUser();
+
 
   // console.log(sharedProperties.getIdUtente());
 
@@ -58,14 +59,16 @@ angular.module('starter.controllers')
     $http.get(link,{
       params: {
         id_utente: $scope.id_utente,
-        anno: $scope.anno,
-        mese:mese,
+        anno: anno,
+        mese: mese,
         giorno:giorno
       }
     }).success(function(data){
-      $scope.movimenti = data.movimenti;
-      $scope.selezionaPeriodo($scope.tabAttivo);
-      // console.log($scope.movimenti);
+      if (data.movimenti != undefined){
+        $scope.movimentiPresenti = true
+        $scope.movimenti = data.movimenti;
+        $scope.selezionaPeriodo($scope.tabAttivo);
+      }
     }).catch(function(error){
       console.log(error);
     });

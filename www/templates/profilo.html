@@ -66,7 +66,7 @@
   </div>
 </div>
 
-
+<div class = "cards" ng-if="movimentiPresenti">
     <div class="card">
       <div class="item item-divider" ng-if="tabAttivo==1">Andamento Entrate/Uscite Mensile</div>
       <div class="item item-divider" ng-if="tabAttivo==2">Andamento Entrate/Uscite Settimanale</div>
@@ -79,6 +79,10 @@
     <div class="item item-divider" ng-if="tabAttivo==2">Spese per categoria Settimanale</div>
     <div class="item item-divider" ng-if="tabAttivo==3">Spese per categoria Giornaliero</div>
   <div class="item" id="categorie_chart_div" style="width: 90%; height: 20%;"></div>
+</div>
+</div>
+<div class = "cards" ng-if="movimentiPresenti==false">
+  non ci sono movimenti
 </div>
   </ion-content>
 </ion-view>
