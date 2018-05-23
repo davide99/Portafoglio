@@ -27,7 +27,8 @@ function getLongData(){
 
   $http.get(link,{
     params: {
-      tabella: 'entrate'
+      tabella: 'entrate',
+      id_utente: $scope.id_utente
     }
   }).then(function(response){
     $scope.entrate = response.data.entrate;

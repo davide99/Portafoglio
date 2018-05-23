@@ -44,7 +44,10 @@ angular.module('starter.controllers')
       console.log('controllo campi');
     });
   }
+<<<<<<< HEAD
+=======
   /*
+>>>>>>> a608188bb7f309e77f3228af0eee43a1391c5ea5
   else{
     $ionicPopup.alert({
       title: 'Successo',
@@ -53,7 +56,10 @@ angular.module('starter.controllers')
       console.log('controllo campi');
     });
   }
+<<<<<<< HEAD
+=======
 */
+>>>>>>> a608188bb7f309e77f3228af0eee43a1391c5ea5
 };
 //ritorna id_Tipo
 $scope.ritornaID=function(){
