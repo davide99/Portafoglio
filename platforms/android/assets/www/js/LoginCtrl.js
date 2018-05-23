@@ -1,6 +1,6 @@
 
 angular.module('starter.controllers')
-.controller('LoginCtrl', function($scope, $http, $ionicPopup, $state, sharedProperties, utils) {
+.controller('LoginCtrl', function($scope, $http, $ionicPopup, $state, $ionicHistory, sharedProperties, utils) {
   $scope.loginData={};
   $scope.loginData.remember=true;
 
@@ -33,6 +33,7 @@ angular.module('starter.controllers')
         }
 
         $state.go('app.profilo', {}, {reload: true});
+
       }
     });
   }

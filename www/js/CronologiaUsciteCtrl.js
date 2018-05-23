@@ -25,7 +25,8 @@ $scope.id_utente = sharedProperties.getIdUtente();
 
     $http.get(link,{
       params: {
-        tabella: 'uscite'
+        tabella: 'uscite',
+        id_utente: $scope.id_utente
       }
     }).then(function(response){
       $scope.uscite = response.data.uscite;

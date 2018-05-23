@@ -27,7 +27,7 @@ angular.module('starter.controllers')
 
     $http.get(link,{
       params: {
-        id_utente:1
+        id_utente:$scope.id_utente
 
       }
 

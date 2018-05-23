@@ -1,9 +1,10 @@
 
 angular.module('starter.controllers')
-.controller('UsciteCtrl', function($scope, sharedProperties) {
+.controller('UsciteCtrl', function($scope, sharedProperties, $ionicPopup, $http) {
   //funzione
-  $scope.inserisci = function(){
     $scope.id_utente=sharedProperties.getIdUtente();
+  $scope.inserisci = function(){
+
 
     var link1 = "http://portafoglio.altervista.org/update.php";
     var link2= "http://portafoglio.altervista.org/select.php";
@@ -32,4 +33,42 @@ angular.module('starter.controllers')
       })
         })
       }
+//alert
+  $scope.showPopup = function() {
+    if($scope.nome == "" || $scope.importo == "" ||
+    $scope.id_tipo == ""){
+    $ionicPopup.alert({
+      title: 'Errore',
+      template: 'Compilare tutti i campi !'
+    }).then(function(res) {
+      console.log('controllo campi');
+    });
+  }
+  else{
+    $ionicPopup.alert({
+      title: 'Successo',
+      template: 'Uscita inserita correttamente !'
+    }).then(function(res) {
+      console.log('controllo campi');
+    });
+  }
+};
+//ritorna id_Tipo
+$scope.ritornaID=function(){
+  var link="http://portafoglio.altervista.org/select.php";
+  $http.get(link,{
+    params:{
+      tabella:'tipi'
+    }
+  }).then(function(response){
+    $scope.uscite=response.data.tipi;
+    console.log('tipi', $scope.uscite);
+  }).catch(function(error){
+    console.log(error);
+  })
+}
+
+$scope.ritornaID();
+
+
   });

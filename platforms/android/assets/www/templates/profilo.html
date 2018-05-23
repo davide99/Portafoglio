@@ -42,7 +42,7 @@
   </style>
 
   <ion-content >
-    <div class="positive-bg" style="padding-bottom:10px;text-align:center;">
+    <div class="positive-bg" style="padding-bottom:10px;padding-top:10px;text-align:center;">
         <h3 style="color:white">Il tuo saldo è: <h3>
         <h2 style="color:white">{{utente.saldo | currency}}<h2>
     </div>
@@ -56,7 +56,7 @@
   </div>
   <div>
     <!-- <div class="card" ng-repeat="item in statistiche" style="display: inline-block;white-space: nowrap;overflow: hidden;"> -->
-    <div class="card" ng-repeat="item in statistiche">
+    <div class="card" ng-repeat="item in statisticheMovimenti">
   <div class="item item-divider">
     {{item.nome}}
   </div>
@@ -71,7 +71,14 @@
       <div class="item item-divider" ng-if="tabAttivo==1">Andamento Entrate/Uscite Mensile</div>
       <div class="item item-divider" ng-if="tabAttivo==2">Andamento Entrate/Uscite Settimanale</div>
       <div class="item item-divider" ng-if="tabAttivo==3">Andamento Entrate/Uscite Giornaliero</div>
-    <div class="item" id="chart_div" style="width: 90%; height: 20%;"></div>
+    <div class="item" id="movimenti_chart_div" style="width: 90%; height: 20%;"></div>
   </div>
+
+  <div class="card">
+    <div class="item item-divider" ng-if="tabAttivo==1">Spese per categoria Mensile</div>
+    <div class="item item-divider" ng-if="tabAttivo==2">Spese per categoria Settimanale</div>
+    <div class="item item-divider" ng-if="tabAttivo==3">Spese per categoria Giornaliero</div>
+  <div class="item" id="categorie_chart_div" style="width: 90%; height: 20%;"></div>
+</div>
   </ion-content>
 </ion-view>
